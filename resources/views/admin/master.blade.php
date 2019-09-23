@@ -128,7 +128,7 @@
                                 <a href="{{ route('user.index') }}">All users</a>
                             </li>
                             <li>
-                                <a href="#">Create user</a>
+                                <a href="{{ route('user.create') }}">Create user</a>
                             </li>
                         </ul>
                     </li>

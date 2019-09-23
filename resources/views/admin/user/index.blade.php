@@ -15,7 +15,7 @@
             <th>Country</th>
             <th>Pin Code</th>
             <th>Role</th>
-            <th>Edit</th>
+            <th style="width: 90px;">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -32,7 +32,8 @@
                 <td>{{ $single->pin_code }}</td>
                 <td>{{ $single->role['name'] }}</td>
                 <td>
-                    <a href="#"><i class="material-icons">edit</i></a>
+                    <a href="edit/{{ $single->id }}"><i class="material-icons">edit</i></a>
+                    <a href="remove/{{ $single->id }}"><i class="material-icons">delete_outline</i></a>
                 </td>
             </tr>
         @endforeach

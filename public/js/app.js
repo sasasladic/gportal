@@ -49500,15 +49500,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/my_style.scss":
+/*!**************************************!*\
+  !*** ./resources/sass/my_style.scss ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!********************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/my_style.scss ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\sasa9\Desktop\projects\gportal\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\sasa9\Desktop\projects\gportal\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/macdeveloper01/Desktop/projects/gportal/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/macdeveloper01/Desktop/projects/gportal/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/macdeveloper01/Desktop/projects/gportal/resources/sass/my_style.scss */"./resources/sass/my_style.scss");
 
 
 /***/ })
