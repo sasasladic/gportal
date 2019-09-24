@@ -77,6 +77,19 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="material-icons">notifications</i>
+                        <span class="label-count">7</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header">NOTIFICATIONS</li>
+                        <li class="footer">
+                            <a href="javascript:void(0);" class=" waves-effect waves-block">View All Notifications</a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
@@ -95,7 +108,7 @@
     <aside id="leftsidebar" class="sidebar">
         <div class="user-info">
             <div class="image">
-                <img src="#"
+                <img src="/storage/image/user.png"
                      width="48" height="48" alt="User">
             </div>
             <div class="info-container">
@@ -192,6 +205,7 @@
 <script src="{{ asset('plugins/nestable-master/jquery.nestable.js')}}"></script>
 <!-- Slimscroll Plugin Js -->
 <script src="{{ asset('plugins/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
+<script src="{{ asset('plugins/jquery-inputmask/jquery.inputmask.bundle.js')}}"></script>
 <script src="{{ asset('plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
 <script src="{{ asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
 <script src="{{ asset('plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>

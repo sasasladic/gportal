@@ -66,7 +66,6 @@ class UserController extends Controller
             unset($input['password']);
         }
         $input['status'] = 1;
-        $input['email'] = 'test@test.com';
         $user = new User($input);
         $user->save();
         return redirect()->route('user.index');
