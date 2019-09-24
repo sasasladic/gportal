@@ -83,22 +83,29 @@
                         <i class="material-icons">notifications</i>
                         <span class="label-count">7</span>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" style="margin-top: 16px !important;">
                         <li class="header">NOTIFICATIONS</li>
                         <li class="footer">
                             <a href="javascript:void(0);" class=" waves-effect waves-block">View All Notifications</a>
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="material-icons">more_vert</i>
                     </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+                    <ul class="dropdown-menu" style="margin-top: 16px !important;">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>

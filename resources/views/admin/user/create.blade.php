@@ -49,7 +49,7 @@
                     </div>
                     <div class="row clearfix">
                         <div class="col-md-6">
-                            <b>Email</b>
+                            <b>Email Address</b>
                             <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="material-icons">email</i>
