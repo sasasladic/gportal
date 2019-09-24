@@ -72,7 +72,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
             return true;
         }
         Auth::logout();
-        return abort(401, 'This action is unauthorized.');
+        return false;
     }
 
     /**

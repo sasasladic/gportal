@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
             'first_name' => 'Sasa',
             'last_name'=>'Sladic',
             'username'=>'sasladic',
+//            'email_verified' => date('d-m-yy'),
             'email'=>'sasa96.sladic@gmail.com',
             'password'=>bcrypt('neznam123'),
             'pin_code'=>123456,
