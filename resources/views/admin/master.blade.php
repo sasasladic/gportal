@@ -154,7 +154,7 @@
                     </li>
                 <li>
                     <a href="#" class="menu-toggle">
-                        <i class="material-icons">people</i>
+                        <i class="material-icons">comment</i>
                         <span>Tickets</span>
                     </a>
                     <ul class="ml-menu">

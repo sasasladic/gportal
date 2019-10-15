@@ -10,6 +10,8 @@
             <th>Title</th>
             <th>Description</th>
             <th>User</th>
+            <th>Priority</th>
+            <th>Status</th>
             <th>Created at</th>
             <th style="width: 90px;">Actions</th>
         </tr>
@@ -21,6 +23,8 @@
                 <td>{{ $single->title }}</td>
                 <td>{{ $single->description }}</td>
                 <td>{{ $single->user->first_name . ' ' .$single->user->last_name}}</td>
+                <td>{{ $single->priority}}</td>
+                <td>@if( $single->status) Active @else Closed @endif</td>
                 <td>{{ date("d.m.Y H:i", strtotime($single->created_at)) }}</td>
                 <td>
                     <a href="show/{{ $single->id }}"><i class="material-icons">visibility</i></a>
