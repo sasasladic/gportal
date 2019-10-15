@@ -18,5 +18,9 @@ class BackendServiceProvider extends ServiceProvider
             'App\Repositories\RoleRepositoryInterface',
             'App\Repositories\RoleRepository'
         );
+        $this->app->bind(
+            'App\Repositories\TicketRepositoryInterface',
+            'App\Repositories\TicketRepository'
+        );
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
@@ -30,9 +31,9 @@ class UserController extends Controller
         $this->users = $users;
     }
     /**
-     * Display a listing of the resource.
+     * Display a listing of the users.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -41,9 +42,9 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new user.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -52,10 +53,10 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created user in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -69,22 +70,13 @@ class UserController extends Controller
         $user = new User($input);
         $user->save();
         return redirect()->route('user.index');
-//        $user->temporary_hash = bcrypt(now()->timestamp);
-//        if($user->save()){
-//            $data =array();
-//            $data['email'] = $user['email'];
-//            $data['name'] = $user['first_name'] . $user['last_name'];
-//            $data['subject'] = 'Email confirmation';
-//            $data['hash'] = $user['temporary_hash'];
-//            send_email('email.confirm_password',$data);
-//            return redirect()->route('user.index');
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified user.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -92,7 +84,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing specific user
+     * Show the form for editing specific user.
      *
      * @param $id
      * @return Factory|View
@@ -129,7 +121,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
