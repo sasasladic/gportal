@@ -155,11 +155,11 @@
                 <li>
                     <a href="#" class="menu-toggle">
                         <i class="material-icons">comment</i>
-                        <span>Tickets</span>
+                        <span>Support</span>
                     </a>
                     <ul class="ml-menu">
                         <li>
-                            <a href="{{ route('ticket.index') }}">All tickets</a>
+                            <a href="{{ route('ticket.index') }}">Tickets</a>
                         </li>
                     </ul>
                 </li>
