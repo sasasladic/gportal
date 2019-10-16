@@ -62,6 +62,10 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         return $this->hasOne(Image::class);
     }
 
+    public function tickets() {
+        return $this->hasMany(Ticket::class);
+    }
+
     /**
      * @param string|array $roles
      * @return
@@ -72,7 +76,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
             return true;
         }
         Auth::logout();
-        return abort(401, 'This action is unauthorized.');
+        return false;
     }
 
     /**

@@ -152,6 +152,17 @@
                             </li>
                         </ul>
                     </li>
+                <li>
+                    <a href="#" class="menu-toggle">
+                        <i class="material-icons">comment</i>
+                        <span>Support</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{{ route('ticket.index') }}">Tickets</a>
+                        </li>
+                    </ul>
+                </li>
 {{--                @endif--}}
 
             </ul>

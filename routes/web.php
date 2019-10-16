@@ -17,26 +17,33 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('profile', function () {
     // Only verified users may enter...
 })->middleware('verified');
 
-Route::prefix('dashboard')->middleware('verified')->group(function () {
+Route::prefix('dashboard')->middleware('verified','authentication:Admin')->group(function () {
 
     /*
      * Home route
      */
     Route::get('/home', 'HomeController@index')->name('home');
 
-
+    /*
+     * User routes
+     */
     Route::get('/user/all', 'Admin\UserController@index')->name('user.index');
     Route::get('/user/edit/{id}', 'Admin\UserController@edit')->name('user.edit');
     Route::patch('/user/edit/{id}', 'Admin\UserController@update')->name('user.update');
     Route::get('/user/remove/{id}', 'Admin\UserController@destroy')->name('user.destroy');
     Route::get('/user/create', 'Admin\UserController@create')->name('user.create');
     Route::patch('/user/create', 'Admin\UserController@store')->name('user.store');
+
+    /*
+     * Ticket routes
+     */
+    Route::get('/ticket/all', 'Admin\TicketController@index')->name('ticket.index');
+    Route::get('/ticket/show/{id}', 'Admin\TicketController@show')->name('ticket.show');
+
 
 
 });

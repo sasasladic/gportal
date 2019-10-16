@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\UserValidation;
 use App\Repositories\RoleRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
 use App\User;
@@ -32,7 +31,7 @@ class UserController extends Controller
         $this->users = $users;
     }
     /**
-     * Display a listing of the resource.
+     * Display a listing of the users.
      *
      * @return Response
      */
@@ -43,7 +42,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new user.
      *
      * @return Response
      */
@@ -54,12 +53,12 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created user in storage.
      *
-     * @param UserValidation $request
+     * @param Request $request
      * @return Response
      */
-    public function store(UserValidation $request)
+    public function store(Request $request)
     {
         $input = $request->all();
         if ($request->get('password') != null) {
@@ -71,19 +70,10 @@ class UserController extends Controller
         $user = new User($input);
         $user->save();
         return redirect()->route('user.index');
-//        $user->temporary_hash = bcrypt(now()->timestamp);
-//        if($user->save()){
-//            $data =array();
-//            $data['email'] = $user['email'];
-//            $data['name'] = $user['first_name'] . $user['last_name'];
-//            $data['subject'] = 'Email confirmation';
-//            $data['hash'] = $user['temporary_hash'];
-//            send_email('email.confirm_password',$data);
-//            return redirect()->route('user.index');
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified user.
      *
      * @param  int  $id
      * @return Response
@@ -94,7 +84,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing specific user
+     * Show the form for editing specific user.
      *
      * @param $id
      * @return Factory|View

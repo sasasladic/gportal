@@ -21,5 +21,8 @@ class RolesTableSeeder extends Seeder
         DB::table('roles')->insert([
             'name' => 'Not Verified',
         ]);
+        DB::table('roles')->insert([
+            'name' => 'Employee',
+        ]);
     }
 }
