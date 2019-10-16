@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\MainRepositoryInterface;
 use App\Repositories\RoleRepositoryInterface;
-use App\Repositories\UserRepositoryInterface;
 use App\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -21,11 +20,11 @@ class UserController extends Controller
     /**
      * UserController constructor.
      * @param RoleRepositoryInterface $roles
-     * @param UserRepositoryInterface $users
+     * @param MainRepositoryInterface $users
      */
     public function __construct(
         RoleRepositoryInterface $roles,
-        UserRepositoryInterface $users
+        MainRepositoryInterface $users
     ) {
         $this->roles = $roles;
         $this->users = $users;
@@ -60,16 +59,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        if ($request->get('password') != null) {
-            $input['password'] = Hash::make($request->get('password'));
-        } else {
-            unset($input['password']);
-        }
-        $input['status'] = 1;
-        $user = new User($input);
-        $user->save();
-        return redirect()->route('user.index');
+        return $this->users->store($request->all()) ? redirect()->route('user.index') : redirect()->back()->with('error',
+            'Something went wrong, please try again.')->withInput($request->all());
     }
 
     /**
@@ -86,47 +77,38 @@ class UserController extends Controller
     /**
      * Show the form for editing specific user.
      *
-     * @param $id
+     * @param User $user
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = $this->users->get($id);
         $roles = $this->roles->all();
         return view('admin.user.edit',
             ['data' => $user, 'roles' => $roles]);
     }
 
     /**
-     * Update the specific user
+     * Update the specific user.
      *
      * @param Request $request
-     * @param $id
+     * @param User $user
      * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = $this->users->get($id);
-        $input = $request->all();
-        if ($request->get('password') != null) {
-            $input['password'] = Hash::make($request->get('password'));
-        } else {
-            unset($input['password']);
-        }
-        return $user->update($input) ? redirect()->route('user.index') : redirect()->back()->with('error',
+        return $this->users->update($user, $request->all()) ? redirect()->route('user.index') : redirect()->back()->with('error',
             'Something went wrong, please try again.')->withInput($request->all());
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified user from storage.
      *
-     * @param  int  $id
+     * @param User $user
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
         try {
-            $user = $this->users->get($id);
             if (!is_null($user)) {
                 $this->users->delete($user);
             }
