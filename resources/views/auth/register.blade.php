@@ -72,6 +72,9 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <p id="passwordHelpBlock" class="form-text text-muted">
+                                    Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.
+                                </p>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -93,7 +96,7 @@
                             <label for="pin_code" class="col-md-4 col-form-label text-md-right">{{ __('Pin Code') }}</label>
 
                             <div class="col-md-6">
-                                <input id="pin_code" type="text" class="form-control @error('pin_code') is-invalid @enderror" name="pin_code" value="{{ old('pin_code') }}" required autocomplete="pin_code" autofocus>
+                                <input id="pin_code" type="text" class="form-control @error('pin_code') is-invalid @enderror" name="pin_code" value="{{ old('pin_code') }}" autocomplete="pin_code" autofocus>
 
                                 @error('pin_code')
                                 <span class="invalid-feedback" role="alert">

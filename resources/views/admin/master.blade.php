@@ -49,7 +49,7 @@
     </style>
 </head>
 
-<body class="theme-grey">
+<body class="theme-blue-grey">
 <!-- Page Loader -->
 <div class="page-loader-wrapper">
     <div class="loader">
@@ -132,7 +132,7 @@
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="">
-                    <a href="/">
+                    <a href="/home">
                         <i class="material-icons">home</i>
                         <span>Home</span>
                     </a>

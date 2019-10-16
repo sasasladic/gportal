@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserValidation;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -40,8 +41,10 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function register(Request $request) {
-        $this->create($request->all());
+    public function register(UserValidation $request) {
+        $data = $request->all();
+        $data['ip'] = $request->ip();
+        $this->create($data);
         return redirect()->route('login');
     }
 
@@ -81,7 +84,7 @@ class RegisterController extends Controller
             'pin_code' => $data['pin_code'],
             'country' => $data['country'],
             'status' => 0,
-            'ip_address' => '192.168.0.0.1',
+            'ip_address' => $data['ip'],
             'role_id'=> 3,
         ]);
     }
