@@ -44,6 +44,10 @@ Route::prefix('dashboard')->middleware('verified','authentication:Admin')->group
     Route::get('/ticket/all', 'Admin\TicketController@index')->name('ticket.index');
     Route::get('/ticket/show/{ticket}', 'Admin\TicketController@show')->name('ticket.show');
 
-
+    /*
+     * Game routes
+     */
+    Route::get('/game/create', 'Admin\GameController@create')->name('game.create');
+    Route::post('/game/create', 'Admin\GameController@store')->name('game.store');
 
 });

@@ -9,10 +9,17 @@ class Game extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name'
+        'name',
+        'short_name'
     ];
 
-    public function orders(){
+    public function orders()
+    {
         return $this->hasMany(Game::class);
+    }
+
+    public function mods()
+    {
+        return $this->hasMany(Mod::class);
     }
 }
