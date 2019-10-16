@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany as HasManyAlias;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +42,8 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -51,20 +55,40 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
         'email_verified_at' => 'datetime',
     ];
 
-    public function role(){
+    /**
+     * Return role associated with the user.
+     * @return BelongsTo
+     */
+    public function role()
+    {
         return $this->belongsTo(Role::class);
     }
 
     /**
-     * Get the image associated with the user.
+     * Return image associated with the user.
+     * @return HasOne
      */
     public function image()
     {
         return $this->hasOne(Image::class);
     }
 
-    public function tickets() {
+    /**
+     * Return ticket related with user who left ticket.
+     * @return HasManyAlias
+     */
+    public function tickets()
+    {
         return $this->hasMany(Ticket::class);
+    }
+
+    /**
+     * Return server with which user is related.
+     * @return HasManyAlias
+     */
+    public function servers()
+    {
+        return $this->hasMany(Server::class);
     }
 
     /**
@@ -104,6 +128,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
     {
         return $this->getKey();
     }
+
     public function getJWTCustomClaims()
     {
         return [];

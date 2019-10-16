@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\TicketRepositoryInterface;
+use App\Repositories\MainRepositoryInterface;
+use App\Ticket;
 use Illuminate\Http\Response;
 
 class TicketController extends Controller
@@ -13,11 +14,11 @@ class TicketController extends Controller
 
     /**
      * TicketController constructor.
-     * @param TicketRepositoryInterface $tickets
+     * @param MainRepositoryInterface $tickets
      *
      */
     public function __construct(
-        TicketRepositoryInterface $tickets
+        MainRepositoryInterface $tickets
     ) {
         $this->tickets = $tickets;
     }
@@ -36,11 +37,11 @@ class TicketController extends Controller
     /**
      * Display the specified ticket.
      *
-     * @param  int  $id
+     * @param Ticket $ticket
      * @return Response
      */
-    public function show($id)
+    public function show(Ticket $ticket)
     {
-        return view('admin.ticket.show', ['data' => $this->tickets->get($id)]);
+        return view('admin.ticket.show', ['data' => $ticket]);
     }
 }

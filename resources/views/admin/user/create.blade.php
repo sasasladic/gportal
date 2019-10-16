@@ -22,7 +22,6 @@
             <div class="body">
                 <form action="{{ route('user.create') }}" method="post" enctype='multipart/form-data'>
                     @csrf
-                    @method('PATCH')
                     <div class="row clearfix">
                         <div class="col-md-6">
                             <b>First name</b>
