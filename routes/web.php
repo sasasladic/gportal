@@ -42,7 +42,7 @@ Route::prefix('dashboard')->middleware('verified','authentication:Admin')->group
      * Ticket routes
      */
     Route::get('/ticket/all', 'Admin\TicketController@index')->name('ticket.index');
-    Route::get('/ticket/show/{id}', 'Admin\TicketController@show')->name('ticket.show');
+    Route::get('/ticket/show/{ticket}', 'Admin\TicketController@show')->name('ticket.show');
 
 
 
