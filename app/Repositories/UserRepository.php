@@ -3,47 +3,60 @@
 namespace App\Repositories;
 
 use App\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
-class UserRepository implements MainRepositoryInterface
+class UserRepository implements UserRepositoryInterface
 {
 
-    public function store(array $attributes)
+    public function store(array $attributes): bool
     {
-        if ($attributes['password'] != null) {
-            $attributes['password'] = Hash::make($attributes['password']);
-        } else {
-            unset($attributes['password']);
-        }
-        $attributes['status'] = 1;
-        $user = new User($attributes);
+        try {
+            if ($attributes['password'] != null) {
+                $attributes['password'] = Hash::make($attributes['password']);
+            } else {
+                unset($attributes['password']);
+            }
+            $attributes['status'] = 1;
+            $user = new User($attributes);
 
-        return $user->save();
+            return $user->save();
+        } catch (\Exception $exception) {
+            return false;
+        }
     }
 
-    public function all()
+    public function all(): Collection
     {
         return User::all();
     }
 
-    public function get($id)
+    public function get($id): User
     {
         return User::find($id);
     }
 
-    public function update(Model $model, array $attributes)
+    public function update(Model $model, array $attributes): bool
     {
-        if ($attributes['password'] != null) {
-            $attributes['password'] = Hash::make($attributes['password']);
-        } else {
-            unset($attributes['password']);
+        try {
+            if ($attributes['password'] != null) {
+                $attributes['password'] = Hash::make($attributes['password']);
+            } else {
+                unset($attributes['password']);
+            }
+            return $model->update($attributes);
+        } catch (\Exception $exception) {
+            return false;
         }
-        return $model->update($attributes);
     }
 
-    public function delete(Model $model)
+    public function delete(Model $model): bool
     {
-        return $model->delete();
+        try {
+            return $model->delete();
+        } catch (\Exception $exception) {
+            return false;
+        }
     }
 }

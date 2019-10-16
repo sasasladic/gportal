@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repositories\MainRepositoryInterface;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\UserValidation;
 use App\Repositories\RoleRepositoryInterface;
+use App\Repositories\UserRepositoryInterface;
 use App\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
@@ -20,15 +20,16 @@ class UserController extends Controller
     /**
      * UserController constructor.
      * @param RoleRepositoryInterface $roles
-     * @param MainRepositoryInterface $users
+     * @param UserRepositoryInterface $users
      */
     public function __construct(
         RoleRepositoryInterface $roles,
-        MainRepositoryInterface $users
+        UserRepositoryInterface $users
     ) {
         $this->roles = $roles;
         $this->users = $users;
     }
+
     /**
      * Display a listing of the users.
      *
@@ -54,10 +55,10 @@ class UserController extends Controller
     /**
      * Store a newly created user in storage.
      *
-     * @param Request $request
+     * @param UserValidation $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(UserValidation $request)
     {
         return $this->users->store($request->all()) ? redirect()->route('user.index') : redirect()->back()->with('error',
             'Something went wrong, please try again.')->withInput($request->all());
@@ -66,7 +67,7 @@ class UserController extends Controller
     /**
      * Display the specified user.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -90,13 +91,14 @@ class UserController extends Controller
     /**
      * Update the specific user.
      *
-     * @param Request $request
+     * @param UserValidation $request
      * @param User $user
      * @return RedirectResponse
      */
-    public function update(Request $request, User $user)
+    public function update(UserValidation $request, User $user)
     {
-        return $this->users->update($user, $request->all()) ? redirect()->route('user.index') : redirect()->back()->with('error',
+        return $this->users->update($user,
+            $request->all()) ? redirect()->route('user.index') : redirect()->back()->with('error',
             'Something went wrong, please try again.')->withInput($request->all());
     }
 

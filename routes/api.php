@@ -23,10 +23,10 @@ Route::prefix('v1')->group(function () {
      * Login route
      */
     Route::post('/login', 'API\UserController@login');
-    Route::post('/register', 'API\UserController@registerUser');
+    Route::post('/register', 'API\UserController@register');
 
 });
 
-Route::group(['middleware' => ['jwt.verify']], function() {
+Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('user', 'UserController@getAuthenticatedUser');
 });

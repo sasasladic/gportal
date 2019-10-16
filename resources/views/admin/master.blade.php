@@ -46,86 +46,6 @@
             width: 200px;
             word-wrap: break-word;
         }
-
-        .page-header { position: relative; }
-        .reviews {
-            color: #555;
-            font-weight: bold;
-            margin: 10px auto 20px;
-        }
-        .notes {
-            color: #999;
-            font-size: 12px;
-        }
-        .media .media-object { max-width: 120px; }
-        .media-body { position: relative; }
-        .media-date {
-            position: absolute;
-            right: 25px;
-            top: 25px;
-        }
-        .media-date li { padding: 0; }
-        .media-date li:first-child:before { content: ''; }
-        .media-date li:before {
-            content: '.';
-            margin-left: -2px;
-            margin-right: 2px;
-        }
-        .media-comment { margin-bottom: 20px; }
-        .media-replied { margin: 0 0 20px 50px; }
-        .media-replied .media-heading { padding-left: 6px; }
-
-        .btn-circle {
-            font-weight: bold;
-            font-size: 12px;
-            padding: 6px 15px;
-            border-radius: 20px;
-        }
-        .btn-circle span { padding-right: 6px; }
-        .embed-responsive { margin-bottom: 20px; }
-        .tab-content {
-            padding: 50px 15px;
-            border: 1px solid #ddd;
-            border-top: 0;
-            border-bottom-right-radius: 4px;
-            border-bottom-left-radius: 4px;
-        }
-        .custom-input-file {
-            overflow: hidden;
-            position: relative;
-            width: 120px;
-            height: 120px;
-            background: #eee url('https://s3.amazonaws.com/uifaces/faces/twitter/walterstephanie/128.jpg');
-            background-size: 120px;
-            border-radius: 120px;
-        }
-        input[type="file"]{
-            z-index: 999;
-            line-height: 0;
-            font-size: 0;
-            position: absolute;
-            opacity: 0;
-            filter: alpha(opacity = 0);-ms-filter: "alpha(opacity=0)";
-            margin: 0;
-            padding:0;
-            left:0;
-        }
-        .uploadPhoto {
-            position: absolute;
-            top: 25%;
-            left: 25%;
-            display: none;
-            width: 50%;
-            height: 50%;
-            color: #fff;
-            text-align: center;
-            line-height: 60px;
-            text-transform: uppercase;
-            background-color: rgba(0,0,0,.3);
-            border-radius: 50px;
-            cursor: pointer;
-        }
-        .custom-input-file:hover .uploadPhoto { display: block; }
     </style>
 </head>
 
@@ -157,7 +77,8 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                <li><a href="javascript:void(0);" class="js-search" data-close="true"><i
+                                class="material-icons">search</i></a></li>
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                         <i class="material-icons">notifications</i>
@@ -217,21 +138,21 @@
                         <span>Home</span>
                     </a>
                 </li>
-{{--                @if( Auth::user()->role->name == 'admin')--}}
-                    <li>
-                        <a href="#" class="menu-toggle">
-                            <i class="material-icons">people</i>
-                            <span>Users</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="{{ route('user.index') }}">All users</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('user.create') }}">Create user</a>
-                            </li>
-                        </ul>
-                    </li>
+                {{--                @if( Auth::user()->role->name == 'admin')--}}
+                <li>
+                    <a href="#" class="menu-toggle">
+                        <i class="material-icons">people</i>
+                        <span>Users</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{{ route('user.index') }}">All users</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('user.create') }}">Create user</a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a href="#" class="menu-toggle">
                         <i class="material-icons">comment</i>
@@ -254,7 +175,7 @@
                         </li>
                     </ul>
                 </li>
-{{--                @endif--}}
+                {{--                @endif--}}
 
             </ul>
         </div>

@@ -5,11 +5,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserValidation;
-use App\Role;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -65,6 +63,96 @@ class UserController extends Controller
             'expiration' => time(),
             'user' => $user
         ]);
+    }
+
+    /**
+     * @SWG\Post(
+     *      path="/register",
+     *      summary="Registration form",
+     *      description="Registration form with cart",
+     * @SWG\Parameter(
+     *         name="first_name",
+     *         in="formData",
+     *         type="string",
+     *         description="First name",
+     *         required=true,
+     *     ),
+     * @SWG\Parameter(
+     *         name="last_name",
+     *         in="formData",
+     *         type="string",
+     *         description="Last name",
+     *         required=true,
+     *     ),
+     * @SWG\Parameter(
+     *         name="position",
+     *         in="formData",
+     *         type="string",
+     *         description="Position",
+     *         required=true,
+     *     ),
+     * @SWG\Parameter(
+     *         name="email",
+     *         in="formData",
+     *         type="string",
+     *         description="Email",
+     *         required=true,
+     *     ),
+     *     @SWG\Parameter(
+     *         name="cart",
+     *         in="formData",
+     *         type="string",
+     *         description="Type: json. Example: {'cart':[{'id':'1','quantity':'2'}]} with double quotation marks",
+     *         required=true,
+     *     ),
+     * @SWG\Response(
+     *          response=200,
+     *          description="Success"
+     *       ),
+     * @SWG\Response(
+     *          response=404,
+     *          description="Cart Not Found!"
+     *       ),
+     *     )
+     * @param UserValidation $request
+     * @return JsonResponse
+     */
+    public function register(UserValidation $request)
+    {
+        $user = User::create([
+            'first_name' => $request->get('first_name'),
+            'last_name' => $request->get('last_name'),
+            'username' => $request->get('username'),
+            'email' => $request->get('email'),
+            'password' => bcrypt($request->get('password')),
+            'pin_code' => $request->get('pin_code'),
+            'country' => $request->get('country'),
+            'status' => 0,
+            'ip_address' => $request->ip(),
+            'role_id' => 3
+        ]);
+
+//        $data = array();
+//        $data['email'] = $user->email;
+//        $data['name'] = $user->first_name . '' . $user->last_name;
+//        $data['first_name'] = $user->first_name;
+//        $data['subject'] = 'Email confirmation';
+//        send_email('email.registration', $data);
+        $token = JWTAuth::fromUser($user);
+
+//        if ($request->get('cart')) {
+//            $order_header = $this->storeOrderHeader($order_items = json_decode($request->get('cart'), true),
+//                $request->ip(), $user);
+//            if (!$order_header) {
+//                return response()->json(['message' => 'Product Not Found!'], 404);
+//            }
+//            $order_header->user_id = $user->id;
+//            $order_header->no = time();
+//            $order_header->save();
+//        } else {
+//            return response()->json(['message' => 'Cart Not Found!'], 404);
+//        }
+        return response()->json(compact('user', 'token'), 201);
     }
 
     /**

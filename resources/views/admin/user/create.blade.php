@@ -1,6 +1,7 @@
 @extends('admin.master')
 @section('content')
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -30,7 +31,8 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="first_name" class="form-control" placeholder="First name" autocomplete="off" value="{{ old('first_name') }}">
+                                    <input type="text" name="first_name" class="form-control" placeholder="First name"
+                                           autocomplete="off" value="{{ old('first_name') }}">
                                 </div>
                             </div>
                         </div>
@@ -41,7 +43,8 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="last_name" class="form-control" placeholder="Last name" autocomplete="off" value="{{ old('last_name') }}">
+                                    <input type="text" name="last_name" class="form-control" placeholder="Last name"
+                                           autocomplete="off" value="{{ old('last_name') }}">
                                 </div>
                             </div>
                         </div>
@@ -54,7 +57,8 @@
                                                 <i class="material-icons">email</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="email" class="form-control email" placeholder="Ex: example@example.com" value="{{ old('email') }}">
+                                    <input type="text" name="email" class="form-control email"
+                                           placeholder="Ex: example@example.com" value="{{ old('email') }}">
                                 </div>
                             </div>
                         </div>
@@ -65,7 +69,8 @@
                                                 <i class="material-icons">vpn_key</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="password" name="password" autocomplete="off" placeholder="********" class="form-control key">
+                                    <input type="password" name="password" autocomplete="off" placeholder="********"
+                                           class="form-control key">
                                 </div>
                             </div>
                         </div>
@@ -78,7 +83,8 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="username" class="form-control" autocomplete="off"  placeholder="Username" value="{{ old('username') }}">
+                                    <input type="text" name="username" class="form-control" autocomplete="off"
+                                           placeholder="Username" value="{{ old('username') }}">
                                 </div>
                             </div>
                         </div>
@@ -103,7 +109,8 @@
                                                 <i class="material-icons">fiber_pin</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="pin_code" class="form-control" autocomplete="off" placeholder="Ex: XXX-XXXX" value="{{ old('pin_code') }}">
+                                    <input type="text" name="pin_code" class="form-control" autocomplete="off"
+                                           placeholder="Ex: XXX-XXXX" value="{{ old('pin_code') }}">
                                 </div>
                             </div>
                         </div>
@@ -116,7 +123,8 @@
                                                 <i class="material-icons">computer</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="ip_address" class="form-control ip" placeholder="Ex: 255.255.255.255" value="{{ old('ip_address') }}">
+                                    <input type="text" name="ip_address" class="form-control ip"
+                                           placeholder="Ex: 255.255.255.255" value="{{ old('ip_address') }}">
                                 </div>
                             </div>
                         </div>
@@ -127,7 +135,8 @@
                                     <i class="material-icons">outlined_flag</i>
                                 </span>
                                 <div class="form-line">
-                                    <input type="text" name="country" class="form-control" placeholder="Ex: Germany, Spain etc." value="{{ old('country') }}">
+                                    <input type="text" name="country" class="form-control"
+                                           placeholder="Ex: Germany, Spain etc." value="{{ old('country') }}">
                                 </div>
                             </div>
                         </div>

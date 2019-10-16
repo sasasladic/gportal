@@ -2,15 +2,12 @@
 
 namespace App\Repositories;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Role;
+use Illuminate\Database\Eloquent\Collection;
 
 interface RoleRepositoryInterface
 {
-    public function all();
+    public function all(): Collection;
 
-    public function get($id);
-
-    public function update(Model $model);
-
-    public function delete(Model $model);
+    public function get($id): Role;
 }

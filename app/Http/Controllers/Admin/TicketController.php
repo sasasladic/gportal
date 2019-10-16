@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\MainRepositoryInterface;
+use App\Repositories\TicketRepositoryInterface;
 use App\Ticket;
 use Illuminate\Http\Response;
 
@@ -14,11 +14,11 @@ class TicketController extends Controller
 
     /**
      * TicketController constructor.
-     * @param MainRepositoryInterface $tickets
+     * @param TicketRepositoryInterface $tickets
      *
      */
     public function __construct(
-        MainRepositoryInterface $tickets
+        TicketRepositoryInterface $tickets
     ) {
         $this->tickets = $tickets;
     }

@@ -3,28 +3,18 @@
 namespace App\Repositories;
 
 use App\Role;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 
 class RoleRepository implements RoleRepositoryInterface
 {
 
-    public function all()
+    public function all(): Collection
     {
         return Role::all();
     }
 
-    public function get($id)
+    public function get($id): Role
     {
-        return Role::findOrFail($id);
-    }
-
-    public function update(Model $model)
-    {
-        return $model->update();
-    }
-
-    public function delete(Model $model)
-    {
-        return $model->delete();
+        return Role::find($id);
     }
 }
