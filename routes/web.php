@@ -21,7 +21,7 @@ Route::get('profile', function () {
     // Only verified users may enter...
 })->middleware('verified');
 
-Route::prefix('dashboard')->middleware('verified','authentication:Admin')->group(function () {
+Route::prefix('dashboard')->middleware('verified', 'authentication:Admin')->group(function () {
 
     /*
      * Home route
@@ -34,9 +34,9 @@ Route::prefix('dashboard')->middleware('verified','authentication:Admin')->group
     Route::get('/user/all', 'Admin\UserController@index')->name('user.index');
     Route::get('/user/edit/{user}', 'Admin\UserController@edit')->name('user.edit');
     Route::patch('/user/edit/{user}', 'Admin\UserController@update')->name('user.update');
-    Route::get('/user/remove/{user}', 'Admin\UserController@destroy')->name('user.destroy');
     Route::get('/user/create', 'Admin\UserController@create')->name('user.create');
     Route::post('/user/create', 'Admin\UserController@store')->name('user.store');
+    Route::get('/user/remove/{user}', 'Admin\UserController@destroy')->name('user.destroy');
 
     /*
      * Ticket routes
@@ -47,7 +47,11 @@ Route::prefix('dashboard')->middleware('verified','authentication:Admin')->group
     /*
      * Game routes
      */
+    Route::get('/game/all', 'Admin\GameController@index')->name('game.index');
+    Route::get('/game/edit/{game}', 'Admin\GameController@edit')->name('game.edit');
+    Route::patch('/game/edit/{game}', 'Admin\GameController@update')->name('game.update');
     Route::get('/game/create', 'Admin\GameController@create')->name('game.create');
     Route::post('/game/create', 'Admin\GameController@store')->name('game.store');
+    Route::get('/game/remove/{game}', 'Admin\GameController@destroy')->name('game.destroy');
 
 });

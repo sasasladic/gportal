@@ -22,5 +22,9 @@ class BackendServiceProvider extends ServiceProvider
             'App\Repositories\TicketRepositoryInterface',
             'App\Repositories\TicketRepository'
         );
+        $this->app->bind(
+            'App\Repositories\GameRepositoryInterface',
+            'App\Repositories\GameRepository'
+        );
     }
 }

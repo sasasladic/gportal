@@ -16,12 +16,13 @@
         <div class="card">
             <div class="header">
                 <h2>
-                    Create game
+                    Edit game: {{$data->name}} {{ $data->short_name }}
                 </h2>
             </div>
             <div class="body">
-                <form action="{{ route('game.create') }}" method="post" enctype='multipart/form-data'>
+                <form action="{{ route('game.update',$data->id) }}" method="post" enctype='multipart/form-data'>
                     @csrf
+                    @method('PATCH')
                     <div class="row clearfix">
                         <div class="col-md-6">
                             <b>Name</b>
@@ -30,8 +31,8 @@
                                                 <i class="material-icons">videogame_asset</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="name" class="form-control" placeholder="Game name"
-                                           autocomplete="off" value="{{ old('name') }}">
+                                    <input type="text" name="name" class="form-control" placeholder="First name"
+                                           autocomplete="off" value="{{ $data->name }}">
                                 </div>
                             </div>
                         </div>
@@ -42,8 +43,8 @@
                                                 <i class="material-icons">games</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="short_name" class="form-control" placeholder="Short name"
-                                           autocomplete="off" value="{{ old('short_name') }}">
+                                    <input type="text" name="short_name" class="form-control" placeholder="Last name"
+                                           autocomplete="off" value="{{ $data->short_name }}">
                                 </div>
                             </div>
                         </div>

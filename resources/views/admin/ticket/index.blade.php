@@ -24,11 +24,12 @@
                 <td>{{ $single->description }}</td>
                 <td>{{ $single->user->first_name . ' ' .$single->user->last_name}}</td>
                 <td>{{ $single->priority}}</td>
-                <td>@if( $single->status) Active @else Closed @endif</td>
+                <td>@if( $single->status)<span style="color: darkgreen">Active</span>@else<span style="color: darkred"> Closed </span>@endif
+                </td>
                 <td>{{ date("d.m.Y H:i", strtotime($single->created_at)) }}</td>
                 <td>
                     <a href="show/{{ $single->id }}"><i class="material-icons">visibility</i></a>
-{{--                    <a href="remove/{{ $single->id }}"><i class="material-icons">delete_outline</i></a>--}}
+                    {{--                    <a href="remove/{{ $single->id }}"><i class="material-icons">delete_outline</i></a>--}}
                 </td>
             </tr>
         @endforeach

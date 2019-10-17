@@ -171,6 +171,9 @@
                     </a>
                     <ul class="ml-menu">
                         <li>
+                            <a href="{{ route('game.index') }}">All games</a>
+                        </li>
+                        <li>
                             <a href="{{ route('game.create') }}">Create game</a>
                         </li>
                     </ul>

@@ -16,7 +16,7 @@
         <div class="card">
             <div class="header">
                 <h2>
-                    Edit user {{$data->first_name}} {{ $data->last_name }}
+                    Edit user: {{$data->first_name}} {{ $data->last_name }}
                 </h2>
             </div>
             <div class="body">
@@ -31,7 +31,8 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="first_name" class="form-control" placeholder="First name" autocomplete="off" value="{{ $data->first_name }}">
+                                    <input type="text" name="first_name" class="form-control" placeholder="First name"
+                                           autocomplete="off" value="{{ $data->first_name }}">
                                 </div>
                             </div>
                         </div>
@@ -42,7 +43,8 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="last_name" class="form-control" placeholder="Last name" autocomplete="off" value="{{ $data->last_name }}">
+                                    <input type="text" name="last_name" class="form-control" placeholder="Last name"
+                                           autocomplete="off" value="{{ $data->last_name }}">
                                 </div>
                             </div>
                         </div>
@@ -55,7 +57,8 @@
                                                 <i class="material-icons">email</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="email" class="form-control email" placeholder="Ex: example@example.com" disabled value="{{ $data->email }}">
+                                    <input type="text" name="email" class="form-control email"
+                                           placeholder="Ex: example@example.com" disabled value="{{ $data->email }}">
                                 </div>
                             </div>
                         </div>
@@ -66,7 +69,8 @@
                                                 <i class="material-icons">vpn_key</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="password" name="password" autocomplete="off" placeholder="********" class="form-control key">
+                                    <input type="password" name="password" autocomplete="off" placeholder="********"
+                                           class="form-control key">
                                 </div>
                             </div>
                         </div>
@@ -79,7 +83,8 @@
                                                 <i class="material-icons">person</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="username" class="form-control" autocomplete="off"  placeholder="Username" value="{{ $data->username }}">
+                                    <input type="text" name="username" class="form-control" autocomplete="off"
+                                           placeholder="Username" value="{{ $data->username }}">
                                 </div>
                             </div>
                         </div>
@@ -107,7 +112,8 @@
                                                 <i class="material-icons">fiber_pin</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="pin_code" class="form-control" autocomplete="off" placeholder="Ex: XXX-XXXX" value={{$data->pin_code}}>
+                                    <input type="text" name="pin_code" class="form-control" autocomplete="off"
+                                           placeholder="Ex: XXX-XXXX" value={{$data->pin_code}}>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +126,8 @@
                                                 <i class="material-icons">computer</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="ip_address" class="form-control ip" placeholder="Ex: 255.255.255.255" value={{$data->ip_address}}>
+                                    <input type="text" name="ip_address" class="form-control ip"
+                                           placeholder="Ex: 255.255.255.255" value={{$data->ip_address}}>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +138,8 @@
                                     <i class="material-icons">outlined_flag</i>
                                 </span>
                                 <div class="form-line">
-                                    <input type="text" name="country" class="form-control" placeholder="Ex: Germany, Spain etc." value={{$data->country}}>
+                                    <input type="text" name="country" class="form-control"
+                                           placeholder="Ex: Germany, Spain etc." value={{$data->country}}>
                                 </div>
                             </div>
                         </div>

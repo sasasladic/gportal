@@ -2,20 +2,34 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Game;
 use App\Http\Controllers\Controller;
+use App\Repositories\GameRepositoryInterface;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class GameController extends Controller
 {
+    protected $games;
+
     /**
-     * Display a listing of the resource.
+     * GameController constructor.
+     * @param GameRepositoryInterface $games
+     */
+    public function __construct(
+        GameRepositoryInterface $games
+    ) {
+        $this->games = $games;
+    }
+
+    /**
+     * Display a listing of the games.
      *
      * @return Response
      */
     public function index()
     {
-        //
+        return view('admin.game.index', ['data' => $this->games->all()]);
     }
 
     /**
@@ -31,18 +45,19 @@ class GameController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @param Request $request
+     * @return bool
      */
     public function store(Request $request)
     {
-        dd($request);
+        return ($this->games->store($request->all())) ? redirect()->route('game.index') : redirect()->back()->with('error',
+            'Something went wrong, please try again.')->withInput($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -53,34 +68,37 @@ class GameController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Game $game
+     * @return void
      */
-    public function edit($id)
+    public function edit(Game $game)
     {
-        //
+        return view('admin.game.edit', ['data' => $game]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param Game $game
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Game $game)
     {
-        //
+        return $this->games->update($game,
+            $request->all()) ? redirect()->route('game.index') : redirect()->back()->with('error',
+            'Something went wrong, please try again.')->withInput($request->all());
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Game $game
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Game $game)
     {
-        //
+        return ($this->games->delete($game)) ? redirect()->route('game.index') : redirect()->back()->with('error',
+            'Something went wrong, please try again.');
     }
 }
