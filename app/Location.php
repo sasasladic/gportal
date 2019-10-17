@@ -9,7 +9,7 @@ class Location extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name'
+        'address'
     ];
 
     public function machines()

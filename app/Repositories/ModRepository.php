@@ -3,18 +3,19 @@
 
 namespace App\Repositories;
 
-use App\Game;
+
+use App\Mod;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-class GameRepository implements GameRepositoryInterface
+class ModRepository implements ModRepositoryInterface
 {
 
     public function store(array $attributes): bool
     {
         try {
-            $game = new Game($attributes);
-            return $game->save();
+            $mod = new Mod($attributes);
+            return $mod->save();
         } catch (\Exception $exception) {
             return false;
         }
@@ -22,12 +23,12 @@ class GameRepository implements GameRepositoryInterface
 
     public function all(): Collection
     {
-        return Game::all();
+        return Mod::all();
     }
 
-    public function get($id): Game
+    public function get($id): Mod
     {
-        return Game::find($id);
+        return Mod::find($id);
     }
 
     public function update(Model $model, array $attributes): bool
@@ -42,7 +43,7 @@ class GameRepository implements GameRepositoryInterface
     public function delete(Model $model): bool
     {
         try {
-            return $model->delete() ? true : false;
+            return $model->delete();
         } catch (\Exception $exception) {
             return false;
         }

@@ -32,6 +32,15 @@
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{ asset('css/themes/all-themes.min.css')}}" rel="stylesheet"/>
 
+    <!-- TinyMCE Plugin Js and initialization-->
+    <script src="{{ asset('plugins/tinymce/tinymce.min.js')}}"></script>
+
+    <script type="text/javascript">
+        tinyMCE.init({
+            mode: "textareas",
+        });
+    </script>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
@@ -133,7 +142,7 @@
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="">
-                    <a href="/home">
+                    <a href="{{ route('home') }}">
                         <i class="material-icons">home</i>
                         <span>Home</span>
                     </a>
@@ -175,6 +184,34 @@
                         </li>
                         <li>
                             <a href="{{ route('game.create') }}">Create game</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="menu-toggle">
+                        <i class="material-icons">usb</i>
+                        <span>Mods</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{{ route('mod.index') }}">All mods</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('mod.create') }}">Create mod</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="menu-toggle">
+                        <i class="material-icons">desktop_windows</i>
+                        <span>Machines</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{{ route('machine.index') }}">All machines</a>
+                        </li>
+                        <li>
+                            {{--                            <a href="{{ route('mod.create') }}">Create mod</a>--}}
                         </li>
                     </ul>
                 </li>

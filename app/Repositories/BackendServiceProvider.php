@@ -26,5 +26,13 @@ class BackendServiceProvider extends ServiceProvider
             'App\Repositories\GameRepositoryInterface',
             'App\Repositories\GameRepository'
         );
+        $this->app->bind(
+            'App\Repositories\ModRepositoryInterface',
+            'App\Repositories\ModRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\MachineRepositoryInterface',
+            'App\Repositories\MachineRepository'
+        );
     }
 }

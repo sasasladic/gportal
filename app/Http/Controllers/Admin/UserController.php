@@ -110,13 +110,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        try {
-            if (!is_null($user)) {
-                $this->users->delete($user);
-            }
-            return redirect()->route('user.index');
-        } catch (\Exception $exception) {
-            return redirect()->back()->with('error', 'Something went wrong, please try again.');
-        }
+        return $this->users->delete($user) ? redirect()->route('user.index') : redirect()->back()->with('error',
+            'Something went wrong, please try again.');
     }
 }
