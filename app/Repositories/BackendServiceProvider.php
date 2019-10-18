@@ -38,5 +38,9 @@ class BackendServiceProvider extends ServiceProvider
             'App\Repositories\MachineRepositoryInterface',
             'App\Repositories\MachineRepository'
         );
+        $this->app->bind(
+            'App\Repositories\ServerRepositoryInterface',
+            'App\Repositories\ServerRepository'
+        );
     }
 }

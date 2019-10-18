@@ -11,8 +11,8 @@ class Machine extends Model
         'ip_address',
         'name',
         'ssh_port',
-        'ssh_username',
-        'ssh_password',
+        'root_username',
+        'root_password',
         'location_id'
     ];
 

@@ -18,8 +18,8 @@ class CreateMachinesTable extends Migration
             $table->string('ip_address');
             $table->string('name');
             $table->integer('ssh_port');
-            $table->string('ssh_username');
-            $table->string('ssh_password');
+            $table->string('root_username');
+            $table->string('root_password');
             $table->unsignedInteger('location_id');
             $table->timestamps();
         });

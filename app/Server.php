@@ -8,11 +8,12 @@ class Server extends Model
 {
     protected $fillable = [
         'name',
-        'slots',
         'port',
         'username',
         'password',
+        'slots',
         'price',
+        'status',
         'expire_on',
         'machine_id',
         'mod_id',

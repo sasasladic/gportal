@@ -74,5 +74,12 @@ Route::prefix('dashboard')->middleware('verified', 'authentication:Admin')->grou
     Route::post('/machine/edit/{machine}', 'Admin\MachineController@update')->name('machine.update');
     Route::get('/machine/remove/{machine}', 'Admin\MachineController@destroy')->name('machine.destroy');
 
+    /*
+     * Server routes
+     */
+    Route::get('/server/all', 'Admin\ServerController@index')->name('server.index');
+    Route::get('/server/create', 'Admin\ServerController@create')->name('server.create');
+    Route::post('/server/create', 'Admin\ServerController@store')->name('server.store');
+
 
 });

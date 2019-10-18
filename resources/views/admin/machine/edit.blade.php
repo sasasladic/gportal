@@ -25,7 +25,7 @@
                     @csrf
                     <div class="row clearfix">
                         <div class="col-md-6">
-                            <b>Name</b>
+                            <b>Machine name</b>
                             <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="material-icons">person</i>
@@ -79,26 +79,26 @@
                     </div>
                     <div class="row clearfix">
                         <div class="col-md-6">
-                            <b>SSH username</b>
+                            <b>Root username</b>
                             <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="material-icons">computer</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="ssh_username" class="form-control ip"
-                                           placeholder="Server username" value="{{ $data->ssh_username }}">
+                                    <input type="text" name="root_username" class="form-control ip"
+                                           placeholder="Root username" value="{{ $data->root_username }}">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <b>SSH password</b>
+                            <b>Root password</b>
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="material-icons">outlined_flag</i>
                                 </span>
                                 <div class="form-line">
-                                    <input type="text" name="ssh_password" class="form-control"
-                                           placeholder="********" value="{{ $data->ssh_password }}">
+                                    <input type="text" name="root_password" class="form-control"
+                                           placeholder="********" value="{{ $data->root_password }}">
                                 </div>
                             </div>
                         </div>

@@ -215,6 +215,20 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#" class="menu-toggle">
+                        <i class="material-icons">toc</i>
+                        <span>Servers</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{{ route('server.index') }}">All servers</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('server.create') }}">Create server</a>
+                        </li>
+                    </ul>
+                </li>
                 {{--                @endif--}}
 
             </ul>
