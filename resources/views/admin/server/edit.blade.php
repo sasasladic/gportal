@@ -21,8 +21,9 @@
                 </h2>
             </div>
             <div class="body">
-                <form action="{{ route('server.create') }}" method="post" enctype='multipart/form-data'>
+                <form action="{{ route('server.update',$data->id) }}" method="post" enctype='multipart/form-data'>
                     @csrf
+                    @method('PATCH')
                     <div class="row clearfix">
                         <div class="col-md-5">
                             <div class="form-group">
@@ -32,7 +33,7 @@
                                         <option selected value="">Select user</option>
                                         @foreach($users as $user)
                                             <option value="{{ $user->id }}"
-                                                    @if($user->id == old('user_id')) selected @endif>{{ $user->username}}</option>
+                                                    @if($user->id == $data->user_id) selected @endif>{{ $user->username}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -46,7 +47,7 @@
                                         <option selected value="">Select machine</option>
                                         @foreach($machines as $machine)
                                             <option value="{{ $machine->id }}"
-                                                    @if($machine->id == old('machine_id')) selected @endif>{{ $machine->name }}</option>
+                                                    @if($machine->id == $data->machine_id) selected @endif>{{ $machine->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -62,7 +63,7 @@
                                         <option selected value="">Select game</option>
                                         @foreach($games as $game)
                                             <option value="{{ $game->id }}"
-                                                    @if($game->id == old('game_id')) selected @endif>{{ $game->name }}</option>
+                                                    @if($game->id == $data->mod->game_id) selected @endif>{{ $game->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -76,7 +77,7 @@
                                         <option selected value="">Select game</option>
                                         @foreach($mods as $mod)
                                             <option value="{{ $mod->id }}"
-                                                    @if($mod->id == old('mod_id')) selected @endif>{{ $mod->name }}</option>
+                                                    @if($mod->id == $data->mod_id) selected @endif>{{ $mod->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -92,7 +93,7 @@
                                             </span>
                                 <div class="form-line">
                                     <input type="text" name="name" class="form-control" placeholder="Server name"
-                                           autocomplete="off" value="{{ old('name') }}">
+                                           autocomplete="off" value="{{ $data->name }}">
                                 </div>
                             </div>
                         </div>
@@ -104,7 +105,7 @@
                                             </span>
                                 <div class="form-line">
                                     <input type="text" name="port" class="form-control" placeholder=":port"
-                                           autocomplete="off" value="{{ old('port') }}">
+                                           autocomplete="off" value="{{ $data->port }}">
                                 </div>
                             </div>
                         </div>
@@ -116,7 +117,7 @@
                                             </span>
                                 <div class="form-line">
                                     <input type="text" name="slots" class="form-control" placeholder="Number of slots"
-                                           autocomplete="off" value="{{ old('slots') }}">
+                                           autocomplete="off" value="{{ $data->slots }}">
                                 </div>
                             </div>
                         </div>
@@ -130,7 +131,7 @@
                                             </span>
                                 <div class="form-line">
                                     <input type="text" name="username" class="form-control" autocomplete="off"
-                                           placeholder="Username" value="{{ old('username') }}">
+                                           placeholder="Username" value="{{ $data->username }}">
                                 </div>
                             </div>
                         </div>
@@ -143,7 +144,7 @@
                                             </span>
                                 <div class="form-line">
                                     <input type="text" name="password" class="form-control" autocomplete="off"
-                                           placeholder="*****" value="{{ old('password') }}">
+                                           placeholder="*****" value="{{ $data->password }}">
                                 </div>
                             </div>
                         </div>
@@ -156,7 +157,7 @@
                                 <div class="form-line">
                                     <input type="date" name="expire_on" class="form-control"
                                            autocomplete="off"
-                                           placeholder="Choose date" value="{{ old('expire_on') }}">
+                                           value="{{ date("Y-m-d", strtotime($data->expire_on)) }}">
                                 </div>
                             </div>
                         </div>

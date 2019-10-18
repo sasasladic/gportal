@@ -8,7 +8,9 @@ use App\Repositories\MachineRepositoryInterface;
 use App\Repositories\ModRepositoryInterface;
 use App\Repositories\ServerRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
+use App\Server;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ServerController extends Controller
 {
@@ -32,7 +34,7 @@ class ServerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -42,7 +44,7 @@ class ServerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -57,8 +59,8 @@ class ServerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -70,7 +72,7 @@ class ServerController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -80,34 +82,42 @@ class ServerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Server $server
+     * @return Response
      */
-    public function edit($id)
+    public function edit(Server $server)
     {
-        //
+        $machines = $this->machine->all();
+        $games = $this->game->all();
+        $mods = $this->mod->all();
+        $users = $this->user->all();
+        return view('admin.server.edit',
+            ['data' => $server, 'machines' => $machines, 'games' => $games, 'mods' => $mods, 'users' => $users]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Server $server
+     * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Server $server)
     {
-        //
+        return $this->mod->update($server,
+            $request->all()) ? redirect()->route('server.index') : redirect()->back()->with('error',
+            'Something went wrong, please try again.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Server $server
+     * @return Response
      */
-    public function destroy($id)
+    public function destroy(Server $server)
     {
-        //
+        return $this->server->delete($server) ? redirect()->route('server.index') : redirect()->back()->with('error',
+            'Something went wrong, please try again.');
     }
 }

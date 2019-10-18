@@ -80,6 +80,9 @@ Route::prefix('dashboard')->middleware('verified', 'authentication:Admin')->grou
     Route::get('/server/all', 'Admin\ServerController@index')->name('server.index');
     Route::get('/server/create', 'Admin\ServerController@create')->name('server.create');
     Route::post('/server/create', 'Admin\ServerController@store')->name('server.store');
+    Route::get('/server/edit/{server}', 'Admin\ServerController@edit')->name('server.edit');
+    Route::patch('/server/edit/{server}', 'Admin\ServerController@update')->name('server.update');
+    Route::get('/server/remove/{server}', 'Admin\ServerController@destroy')->name('server.destroy');
 
 
 });
