@@ -211,7 +211,7 @@
                             <a href="{{ route('machine.index') }}">All machines</a>
                         </li>
                         <li>
-                            {{--                            <a href="{{ route('mod.create') }}">Create mod</a>--}}
+                            <a href="{{ route('machine.create') }}">Create machine</a>
                         </li>
                     </ul>
                 </li>

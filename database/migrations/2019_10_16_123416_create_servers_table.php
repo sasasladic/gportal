@@ -20,6 +20,7 @@ class CreateServersTable extends Migration
             $table->integer('port');
             $table->string('username');
             $table->string('password');
+            $table->double('price');
             $table->date('expire_on');
             $table->unsignedInteger('machine_id');
             $table->unsignedInteger('mod_id');

@@ -68,6 +68,11 @@ Route::prefix('dashboard')->middleware('verified', 'authentication:Admin')->grou
      * Machine routes
      */
     Route::get('/machine/all', 'Admin\MachineController@index')->name('machine.index');
+    Route::get('/machine/create', 'Admin\MachineController@create')->name('machine.create');
+    Route::post('/machine/create', 'Admin\MachineController@store')->name('machine.store');
+    Route::get('/machine/edit/{machine}', 'Admin\MachineController@edit')->name('machine.edit');
+    Route::post('/machine/edit/{machine}', 'Admin\MachineController@update')->name('machine.update');
+    Route::get('/machine/remove/{machine}', 'Admin\MachineController@destroy')->name('machine.destroy');
 
 
 });

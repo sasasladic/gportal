@@ -4,18 +4,18 @@
 namespace App\Repositories;
 
 
-use App\Machine;
+use App\Location;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-class MachineRepository implements MachineRepositoryInterface
+class LocationRepository implements LocationRepositoryInterface
 {
 
     public function store(array $attributes): bool
     {
         try {
-            $machine = new Machine($attributes);
-            return $machine->save();
+            $game = new Location($attributes);
+            return $game->save();
         } catch (\Exception $exception) {
             return false;
         }
@@ -23,12 +23,12 @@ class MachineRepository implements MachineRepositoryInterface
 
     public function all(): Collection
     {
-        return Machine::all();
+        return Location::all();
     }
 
-    public function get($id): Machine
+    public function get($id): Location
     {
-        return Machine::find($id);
+        return Location::find($id);
     }
 
     public function update(Model $model, array $attributes): bool
@@ -43,7 +43,7 @@ class MachineRepository implements MachineRepositoryInterface
     public function delete(Model $model): bool
     {
         try {
-            return $model->delete();
+            return $model->delete() ? true : false;
         } catch (\Exception $exception) {
             return false;
         }

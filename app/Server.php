@@ -12,6 +12,7 @@ class Server extends Model
         'port',
         'username',
         'password',
+        'price',
         'expire_on',
         'machine_id',
         'mod_id',
