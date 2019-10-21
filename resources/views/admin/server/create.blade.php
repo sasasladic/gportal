@@ -156,7 +156,7 @@
                                 <div class="form-line">
                                     <input type="date" name="expire_on" class="form-control"
                                            autocomplete="off"
-                                           placeholder="Choose date" value="{{ old('expire_on') }}">
+                                           placeholder="Please choose a date..." value="{{ old('expire_on') }}">
                                 </div>
                             </div>
                         </div>

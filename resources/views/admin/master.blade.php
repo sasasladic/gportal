@@ -231,7 +231,7 @@
                 </li>
                 <li>
                     <a href="#" class="menu-toggle">
-                        <i class="material-icons">toc</i>
+                        <i class="material-icons">local_offer</i>
                         <span>Orders</span>
                     </a>
                     <ul class="ml-menu">
