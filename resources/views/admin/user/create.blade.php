@@ -141,7 +141,9 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary m-t-15 waves-effect">Save</button>
+                    <button type="submit" class="btn btn-primary m-t-15 waves-effect" style="margin-bottom: 10px;">
+                        Save
+                    </button>
                 </form>
             </div>
         </div>

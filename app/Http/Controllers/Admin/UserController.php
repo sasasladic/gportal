@@ -67,12 +67,12 @@ class UserController extends Controller
     /**
      * Display the specified user.
      *
-     * @param int $id
+     * @param User $user
      * @return Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('admin.user.show', ['data' => $user]);
     }
 
     /**

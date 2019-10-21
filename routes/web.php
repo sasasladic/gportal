@@ -36,6 +36,7 @@ Route::prefix('dashboard')->middleware('verified', 'authentication:Admin')->grou
     Route::post('/user/create', 'Admin\UserController@store')->name('user.store');
     Route::get('/user/edit/{user}', 'Admin\UserController@edit')->name('user.edit');
     Route::patch('/user/edit/{user}', 'Admin\UserController@update')->name('user.update');
+    Route::get('/user/show/{user}', 'Admin\UserController@show')->name('user.show');
     Route::get('/user/remove/{user}', 'Admin\UserController@destroy')->name('user.destroy');
 
     /*

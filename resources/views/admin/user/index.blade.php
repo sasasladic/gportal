@@ -33,11 +33,12 @@
                 <td>{{ $single->role['name'] }}</td>
                 <td>
                     <a href="edit/{{ $single->id}}"><i class="material-icons">edit</i></a>
+                    <a href="show/{{ $single->id }}"><i class="material-icons">remove_red_eye</i></a>
                     <a href="remove/{{ $single->id }}"><i class="material-icons">delete_outline</i></a>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
-{{--    {{ $data->appends(request()->except('page'))->links() }}--}}
+    {{--    {{ $data->appends(request()->except('page'))->links() }}--}}
 @endsection
