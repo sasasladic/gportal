@@ -13,11 +13,6 @@ class Game extends Model
         'short_name'
     ];
 
-    public function orders()
-    {
-        return $this->hasMany(Game::class);
-    }
-
     public function mods()
     {
         return $this->hasMany(Mod::class);

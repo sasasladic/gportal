@@ -8,10 +8,22 @@ class Order extends Model
 {
     protected $fillable = [
         'user_id',
-        'game_id'
+        'server_id',
+        'order_status_id'
     ];
 
-    public function game(){
-        return $this->belongsTo(Game::class);
+    public function server()
+    {
+        return $this->belongsTo(Server::class);
+    }
+
+    public function order_status()
+    {
+        return $this->belongsTo(OrderStatus::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

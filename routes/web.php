@@ -84,5 +84,11 @@ Route::prefix('dashboard')->middleware('verified', 'authentication:Admin')->grou
     Route::patch('/server/edit/{server}', 'Admin\ServerController@update')->name('server.update');
     Route::get('/server/remove/{server}', 'Admin\ServerController@destroy')->name('server.destroy');
 
+    /*
+     * Order routes
+     */
+    Route::get('/order/all', 'Admin\OrderController@index')->name('order.index');
+    Route::post('/order/update', 'Admin\OrderController@status_update')->name('order.status');
+
 
 });

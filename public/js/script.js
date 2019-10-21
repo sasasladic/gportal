@@ -142,7 +142,7 @@ $('select.changeStatus').change(function () {
     if (confirm("Do you want to change order status?")) {
         $.ajax({
             type: 'POST',
-            url: document.location.origin + '/dashboard/order/headers/update',
+            url: document.location.origin + '/dashboard/order/update',
             data: {
                 id: $("option:selected", this)[0].value,
                 order: $("option:selected", this)[0].className,

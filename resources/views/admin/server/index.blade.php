@@ -7,7 +7,7 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>User</th>
+            <th>Client</th>
             <th>Machine</th>
             <th>Server</th>
             <th>Game</th>

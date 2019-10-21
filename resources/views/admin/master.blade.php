@@ -229,6 +229,17 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#" class="menu-toggle">
+                        <i class="material-icons">toc</i>
+                        <span>Orders</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{{ route('order.index') }}">All orders</a>
+                        </li>
+                    </ul>
+                </li>
                 {{--                @endif--}}
 
             </ul>

@@ -28,7 +28,7 @@
                         <div class="col-md-5">
                             <div class="form-group">
                                 <div class="form-line">
-                                    <label>Users</label>
+                                    <label>Client</label>
                                     <select name="user_id" class="form-control show-tick" data-live-search="true">
                                         <option selected value="">Select user</option>
                                         @foreach($users as $user)

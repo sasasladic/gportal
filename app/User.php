@@ -92,6 +92,15 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
     }
 
     /**
+     * Return orders with which user is related.
+     * @return HasManyAlias
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /**
      * @param string|array $roles
      * @return
      */
