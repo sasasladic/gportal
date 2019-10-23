@@ -2,7 +2,11 @@
 @section('content')
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="row" style="background-color: #fdfdfd;">
-            <div class="col-sm-10" style="margin-bottom: 15px;"><h1>Sasa Sladic</h1></div>
+            <div class="col-sm-10" style="margin-bottom: 15px;"><h1
+                        style="margin-left: 75px;">{{$data->first_name . ' ' . $data->last_name}} <a
+                            href="{{route('user.edit',$data->id)}}"><i class="material-icons"
+                                                                       style="font-size: 30px;">edit</i></a>
+                </h1></div>
             <div class="col-sm-3"><!--left col-->
 
 
@@ -22,12 +26,17 @@
 
 
                 <ul class="list-group">
-                    <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125
+                    <li class="list-group-item text-muted" style="background-color: #f5f5f5;">Activity <i
+                                class="fa fa-dashboard fa-1x"></i></li>
+                    <li class="list-group-item text-right"><span
+                                class="pull-left"><strong>Status</strong></span> @if( $data->status ==1  )
+                            <span style="color: darkgreen">Active</span> @else
+                            <span style="color: darkred">Not active</span> @endif</li>
+                    <li class="list-group-item text-right"><span
+                                class="pull-left"><strong>Servers</strong></span> {{count($servers)}}
                     </li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78
+                    <li class="list-group-item text-right"><span
+                                class="pull-left"><strong>Tickets</strong></span> {{count($data->tickets)}}
                     </li>
                 </ul>
 
@@ -43,8 +52,8 @@
             </div><!--/col-3-->
             <div class="col-sm-9" style="background:#fdfdfd ">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                    <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
+                    <li class="active"><a data-toggle="tab" href="#home">Settings</a></li>
+                    <li><a data-toggle="tab" href="#servers">Servers</a></li>
                     <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
                 </ul>
 
@@ -56,77 +65,106 @@
 
                                 <div class="col-xs-6">
                                     <label for="first_name"><h4>First name</h4></label>
-                                    <input type="text" class="form-control" name="first_name" id="first_name"
-                                           placeholder="first name" title="enter your first name if any.">
+                                    <input type="text" class="form-control" name="first_name"
+                                           placeholder="first name" value="{{$data->first_name}}" disabled>
                                 </div>
                             </div>
                             <div class="formGroup">
 
                                 <div class="col-xs-6">
                                     <label for="last_name"><h4>Last name</h4></label>
-                                    <input type="text" class="form-control" name="last_name" id="last_name"
-                                           placeholder="last name" title="enter your last name if any.">
+                                    <input type="text" class="form-control" name="last_name"
+                                           placeholder="last name" value="{{$data->last_name}}" disabled>
                                 </div>
                             </div>
 
-                            <div class="formGroup">
-
-                                <div class="col-xs-6">
-                                    <label for="phone"><h4>Phone</h4></label>
-                                    <input type="text" class="form-control" name="phone" id="phone"
-                                           placeholder="enter phone" title="enter your phone number if any.">
-                                </div>
-                            </div>
-
-                            <div class="formGroup">
-                                <div class="col-xs-6">
-                                    <label for="mobile"><h4>Mobile</h4></label>
-                                    <input type="text" class="form-control" name="mobile" id="mobile"
-                                           placeholder="enter mobile number" title="enter your mobile number if any.">
-                                </div>
-                            </div>
                             <div class="formGroup">
 
                                 <div class="col-xs-6">
                                     <label for="email"><h4>Email</h4></label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                           placeholder="you@email.com" title="enter your email.">
+                                    <input type="email" class="form-control" name="email"
+                                           placeholder="enter phone" value="{{$data->email}}" disabled>
+                                </div>
+                            </div>
+
+                            <div class="formGroup">
+                                <div class="col-xs-6">
+                                    <label for="username"><h4>Username</h4></label>
+                                    <input type="text" class="form-control" name="username"
+                                           placeholder="enter mobile number" value="{{$data->username}}" disabled>
                                 </div>
                             </div>
                             <div class="formGroup">
 
                                 <div class="col-xs-6">
-                                    <label for="email"><h4>Location</h4></label>
-                                    <input type="email" class="form-control" id="location" placeholder="somewhere"
-                                           title="enter a location">
+                                    <label for="role"><h4>Role</h4></label>
+                                    <input type="text" class="form-control" name="role"
+                                           placeholder="you@email.com" value="{{$data->role->name}}" disabled>
                                 </div>
                             </div>
                             <div class="formGroup">
 
                                 <div class="col-xs-6">
-                                    <label for="password"><h4>Password</h4></label>
-                                    <input type="password" class="form-control" name="password" id="password"
-                                           placeholder="password" title="enter your password.">
+                                    <label for="pin_code"><h4>Pin code</h4></label>
+                                    <input type="text" class="form-control" name="pin_code" placeholder="somewhere"
+                                           value="{{$data->pin_code}}" disabled>
                                 </div>
                             </div>
                             <div class="formGroup">
 
                                 <div class="col-xs-6">
-                                    <label for="password2"><h4>Verify</h4></label>
-                                    <input type="password" class="form-control" name="password2" id="password2"
-                                           placeholder="password2" title="enter your password2.">
+                                    <label for="ip_address"><h4>IP address</h4></label>
+                                    <input type="text" class="form-control" name="ip_address"
+                                           placeholder="password" value="{{$data->ip_address}}" disabled>
                                 </div>
                             </div>
                             <div class="formGroup">
-                                <div class="col-xs-8">
-                                    <button type="submit" class="btn btn-success btn-lg m-t-15 waves-effect"
-                                            style="margin-top: 41px;width: 75px;">Save
-                                    </button>
+
+                                <div class="col-xs-6">
+                                    <label for="country"><h4>Country</h4></label>
+                                    <input type="text" class="form-control" name="country"
+                                           placeholder="password2" value="{{$data->country}}" disabled>
                                 </div>
                             </div>
+                            {{--                            <div class="formGroup">--}}
+                            {{--                                <div class="col-xs-8">--}}
+                            {{--                                    <a href="{{route('user.edit',$data->id)}}"--}}
+                            {{--                                       class="btn btn-primary btn-lg m-t-15 waves-effect"--}}
+                            {{--                                       style="margin-top: 41px;width: 75px;"><i class="material-icons">edit</i> Edit</a>--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
                         </form>
                     </div>
+
+                    <div class="tab-pane" id="servers">
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Game</th>
+                                <th>Mod</th>
+                                <th>Slots</th>
+                                <th>Expires on</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($servers as $server)
+                                <tr>
+                                    <td>{{ $server->name }}</td>
+                                    <td>{{ $server->mod->game->name }}</td>
+                                    <td>{{ $server->mod->name }}</td>
+                                    <td>{{ $server->slots }}</td>
+                                    <td>{{ date("d.m.Y", strtotime($server->expire_on)) }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
+                    </div><!--/tab-pane-->
                 </div>
+
+
             </div>
 
         </div>

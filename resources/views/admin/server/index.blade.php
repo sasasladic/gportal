@@ -24,8 +24,8 @@
             <tr>
                 <td>{{ $single->id }}</td>
                 <td>{{ $single->user->username }}</td>
-                <td>{{ $single->name }}</td>
                 <td>{{ $single->machine->name }}</td>
+                <td>{{ $single->name }}</td>
                 <td>{{ $single->mod->game->name }}</td>
                 <td>{{ $single->mod->name }}</td>
                 <td>{{ $single->port }}</td>

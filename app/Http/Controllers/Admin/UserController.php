@@ -72,7 +72,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.user.show', ['data' => $user]);
+        return view('admin.user.show', ['data' => $user, 'servers' => $user->servers]);
     }
 
     /**
@@ -98,7 +98,7 @@ class UserController extends Controller
     public function update(UserValidation $request, User $user)
     {
         return $this->users->update($user,
-            $request->all()) ? redirect()->route('user.index') : redirect()->back()->with('error',
+            $request->all()) ? redirect()->route('user.show', $user->id) : redirect()->back()->with('error',
             'Something went wrong, please try again.')->withInput($request->all());
     }
 

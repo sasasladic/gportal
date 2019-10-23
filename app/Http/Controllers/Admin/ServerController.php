@@ -64,7 +64,7 @@ class ServerController extends Controller
      */
     public function store(Request $request)
     {
-        return ($this->server->store($request->all())) ? redirect()->route('mod.index') : redirect()->back()->with('error',
+        return ($this->server->store($request->all())) ? redirect()->route('server.index') : redirect()->back()->with('error',
             'Something went wrong, please try again.')->withInput($request->all());
     }
 
