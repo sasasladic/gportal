@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('ip_address');
             $table->unsignedInteger('role_id');
             $table->timestamp('last_active')->nullable();
-            $table->unsignedInteger('image_id')->nullable();
+            $table->unsignedInteger('image_id')->nullable()->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

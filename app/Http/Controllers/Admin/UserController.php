@@ -1,16 +1,20 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserValidation;
+use App\Image;
 use App\Repositories\RoleRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
 use App\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UserController extends Controller
 {
@@ -60,7 +64,22 @@ class UserController extends Controller
      */
     public function store(UserValidation $request)
     {
-        return $this->users->store($request->all()) ? redirect()->route('user.index') : redirect()->back()->with('error',
+        $attributes = $request->except('image');
+        if ($attributes['password'] != null) {
+            $attributes['password'] = Hash::make($attributes['password']);
+        } else {
+            unset($attributes['password']);
+        }
+        if ($request->hasFile('image')) {
+            $alt = $attributes['first_name'] . ' ' . $attributes['last_name'];
+            $image = $this->saveImage($request->file('image'), $alt);
+            if ($image) {
+                $attributes['image_id'] = $image->id;
+            }
+        }
+        $attributes['status'] = 1;
+        $user = new User($attributes);
+        return $user->save() ? redirect()->route('user.index') : redirect()->back()->with('error',
             'Something went wrong, please try again.')->withInput($request->all());
     }
 
@@ -72,7 +91,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.user.show', ['data' => $user, 'servers' => $user->servers]);
+        return view('admin.user.show', ['data' => $user, 'servers' => $user->servers, 'orders' => $user->orders]);
     }
 
     /**
@@ -97,8 +116,22 @@ class UserController extends Controller
      */
     public function update(UserValidation $request, User $user)
     {
-        return $this->users->update($user,
-            $request->all()) ? redirect()->route('user.show', $user->id) : redirect()->back()->with('error',
+        $attributes = $request->except('image');
+        if ($attributes['password'] != null) {
+            $attributes['password'] = Hash::make($attributes['password']);
+        } else {
+            unset($attributes['password']);
+        }
+        if ($request->hasFile('image')) {
+            $alt = $attributes['first_name'] . ' ' . $attributes['last_name'];
+            $image = $this->saveImage($request->file('image'), $alt);
+            if ($image) {
+                $attributes['image_id'] = $image->id;
+            }
+        }
+
+        return $user->update($attributes) ? redirect()->route('user.show',
+            $user->id) : redirect()->back()->with('error',
             'Something went wrong, please try again.')->withInput($request->all());
     }
 
@@ -112,5 +145,23 @@ class UserController extends Controller
     {
         return $this->users->delete($user) ? redirect()->route('user.index') : redirect()->back()->with('error',
             'Something went wrong, please try again.');
+    }
+
+    /**
+     * Save user image if it's set.
+     *
+     * @param UploadedFile $image
+     * @param string $alt
+     *
+     * @return object
+     */
+    public function saveImage(UploadedFile $image, string $alt): object
+    {
+        $image->storeAs('public/image', $image->getClientOriginalName());
+        $imageObject = new Image();
+        $imageObject->path = '/storage/image/' . $image->getClientOriginalName();
+        $imageObject->alt = $alt;
+
+        return $imageObject->save() ? $imageObject : null;
     }
 }

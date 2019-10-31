@@ -6,7 +6,6 @@ use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany as HasManyAlias;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -66,11 +65,11 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
 
     /**
      * Return image associated with the user.
-     * @return HasOne
+     * @return BelongsTo
      */
     public function image()
     {
-        return $this->hasOne(Image::class);
+        return $this->belongsTo(Image::class);
     }
 
     /**

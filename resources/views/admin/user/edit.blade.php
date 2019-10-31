@@ -24,6 +24,17 @@
                     @csrf
                     @method('PATCH')
                     <div class="row clearfix">
+                        <div class="col-md-12" style="text-align: center">
+                            <div class="input-group">
+                                <img src="{{$data->image->path}}" alt="{{$data->image->alt}}" class="avatar img-circle
+                         img-thumbnail" style="height: 210px;width: 220px;">
+                                <h6>Upload a different photo...</h6>
+                                <input id="image_media" name="image" type="file"
+                                       accept=".jfif,.jpg,.jpeg,.png,.gif" class="text-center center-block file-upload">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
                         <div class="col-md-6">
                             <b>First name</b>
                             <div class="input-group">
