@@ -100,6 +100,15 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
     }
 
     /**
+     * Return comments which user left.
+     * @return HasManyAlias
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
      * @param string|array $roles
      * @return
      */
