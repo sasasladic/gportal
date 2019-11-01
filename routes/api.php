@@ -25,6 +25,10 @@ Route::prefix('v1')->group(function () {
     Route::post('/login', 'API\UserController@login');
     Route::post('/register', 'API\UserController@register');
 
+    Route::get('/game/all', 'API\GameController@index');
+    Route::get('/server/all', 'API\ServerController@getUserServers');
+    Route::get('/mod/all/{game_id}', 'API\ModController@findByGameId');
+
 });
 
 Route::group(['middleware' => ['jwt.verify']], function () {

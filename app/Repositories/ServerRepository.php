@@ -33,6 +33,11 @@ class ServerRepository implements ServerRepositoryInterface
         return Server::find($id);
     }
 
+    public function getUserServers($user_id): Collection
+    {
+        return Server::where('user_id', $user_id)->get();
+    }
+
     public function update(Model $model, array $attributes): bool
     {
         try {

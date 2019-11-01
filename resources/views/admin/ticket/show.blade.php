@@ -4,8 +4,10 @@
     <div class="col-sm-10 col-sm-offset-1" id="logout">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1" id="login">
-                <div class="page-header">
+                <div class="page-header"
+                     style="border-bottom: 1px solid #adadad;display: flex;justify-content: space-between;align-items: center;">
                     <h2 class="reviews">{{$data->title}}</h2>
+                    <span class="created_at" style="padding-top: 25px;">{{$data->created_at}}</span>
                 </div>
                 <div class="comment-tabs">
                     <div class="tab-content">
@@ -19,9 +21,10 @@
                                     </a>
                                     <div class="media-body" style="font-size: 14px;">
                                         <div class="well well-lg">
-                                            <span style="color: #555;font-weight: bold;float: right;font-size: 14px;">01.11.2019.</span>
+                                            <span
+                                                style="color: #555;font-weight: bold;float: right;font-size: 14px;">{{$data->created_at}}</span>
                                             <p class="media-heading text-uppercase reviews" style="font-size: 18.5px;">
-                                                Marco</p>
+                                                {{$data->user->first_name . ' ' . $data->user->last_name }}</p>
                                             <p class="media-comment" style="margin-top: 20px;">
                                                 Lorem Ipsum is simply dummy text of the printing and typesetting
                                                 industry. Lorem Ipsum has been the industry's standard dummy text ever
@@ -50,6 +53,24 @@
                             </ul>
                         </div>
                     </div>
+                </div>
+                <div class="support-form">
+                    <form action="#" method="post" class="form-horizontal" id="commentForm" role="form">
+                        <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-10" style="margin-left: 138px;">
+                                <textarea class="form-control" name="addComment" id="addComment" rows="7"
+                                          disabled></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success btn-lg m-t-15 waves-effect"
+                                        style="margin-bottom: 10px;border-radius:15px ">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

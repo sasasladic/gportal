@@ -15,6 +15,8 @@ interface ServerRepositoryInterface
 
     public function get($id): Server;
 
+    public function getUserServers($user_id): Collection;
+
     public function update(Model $model, array $attributes): bool;
 
     public function delete(Model $model): bool;

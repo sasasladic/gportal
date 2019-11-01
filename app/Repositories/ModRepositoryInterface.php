@@ -16,6 +16,8 @@ interface ModRepositoryInterface
 
     public function get($id): Mod;
 
+    public function findByGameId($id): Collection;
+
     public function update(Model $model, array $attributes): bool;
 
     public function delete(Model $model): bool;

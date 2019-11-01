@@ -31,6 +31,11 @@ class ModRepository implements ModRepositoryInterface
         return Mod::find($id);
     }
 
+    public function findByGameId($id): Collection
+    {
+        return Mod::where('game_id', $id)->get();
+    }
+
     public function update(Model $model, array $attributes): bool
     {
         try {
