@@ -139,20 +139,11 @@ class UserController extends Controller
 //        $data['subject'] = 'Email confirmation';
 //        send_email('email.registration', $data);
         $token = JWTAuth::fromUser($user);
-
-//        if ($request->get('cart')) {
-//            $order_header = $this->storeOrderHeader($order_items = json_decode($request->get('cart'), true),
-//                $request->ip(), $user);
-//            if (!$order_header) {
-//                return response()->json(['message' => 'Product Not Found!'], 404);
-//            }
-//            $order_header->user_id = $user->id;
-//            $order_header->no = time();
-//            $order_header->save();
-//        } else {
-//            return response()->json(['message' => 'Cart Not Found!'], 404);
-//        }
-        return response()->json(compact('user', 'token'), 201);
+        return response()->json([
+            'token' => $token,
+            'expiration' => time(),
+            'user' => $user
+        ]);
     }
 
     /**
