@@ -44,6 +44,7 @@ Route::prefix('dashboard')->middleware('verified', 'authentication:Admin')->grou
      */
     Route::get('/ticket/all', 'Admin\TicketController@index')->name('ticket.index');
     Route::get('/ticket/show/{ticket}', 'Admin\TicketController@show')->name('ticket.show');
+    Route::post('/ticket/{ticket}/comment/add', 'Admin\TicketController@addComment')->name('comment.add');
 
     /*
      * Game routes

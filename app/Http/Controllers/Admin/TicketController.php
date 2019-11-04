@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Comment;
 use App\Http\Controllers\Controller;
 use App\Repositories\TicketRepositoryInterface;
 use App\Ticket;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
@@ -42,6 +45,17 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
+        return view('admin.ticket.show', ['data' => $ticket]);
+    }
+
+    public function addComment(Request $request, Ticket $ticket)
+    {
+        $user = Auth::user();
+        $comment = Comment::create([
+            'content' => $request->get('content'),
+            'user_id' => $user->id,
+            'ticket_id' => $ticket->id
+        ]);
         return view('admin.ticket.show', ['data' => $ticket]);
     }
 }
