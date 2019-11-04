@@ -13,9 +13,7 @@ class Controller extends BaseController
 
     /**
      * @SWG\Swagger(
-     *     schemes={"http","https"},
-     *     host="api.host.com",
-     *     basePath="/",
+     *     basePath="/api/v1",
      *     @SWG\Info(
      *         version="1.0.0",
      *         title="This is my website cool API",

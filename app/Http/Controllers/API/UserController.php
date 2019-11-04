@@ -85,10 +85,10 @@ class UserController extends Controller
      *         required=true,
      *     ),
      * @SWG\Parameter(
-     *         name="position",
+     *         name="username",
      *         in="formData",
      *         type="string",
-     *         description="Position",
+     *         description="Username",
      *         required=true,
      *     ),
      * @SWG\Parameter(
@@ -98,11 +98,33 @@ class UserController extends Controller
      *         description="Email",
      *         required=true,
      *     ),
-     *     @SWG\Parameter(
-     *         name="cart",
+     * @SWG\Parameter(
+     *         name="password",
      *         in="formData",
      *         type="string",
-     *         description="Type: json. Example: {'cart':[{'id':'1','quantity':'2'}]} with double quotation marks",
+     *         description="Neznam123!@",
+     *         required=true,
+     *     ),
+     *
+     * @SWG\Parameter(
+     *         name="password_confirmation",
+     *         in="formData",
+     *         type="string",
+     *         description="Neznam123!@",
+     *         required=true,
+     *     ),
+     * @SWG\Parameter(
+     *         name="pin_code",
+     *         in="formData",
+     *         type="string",
+     *         description="Pin code",
+     *         required=true,
+     *     ),
+     * @SWG\Parameter(
+     *         name="country",
+     *         in="formData",
+     *         type="string",
+     *         description="Country",
      *         required=true,
      *     ),
      * @SWG\Response(
@@ -111,7 +133,7 @@ class UserController extends Controller
      *       ),
      * @SWG\Response(
      *          response=404,
-     *          description="Cart Not Found!"
+     *          description="Api Not found!"
      *       ),
      *     )
      * @param UserValidation $request
@@ -131,6 +153,7 @@ class UserController extends Controller
             'ip_address' => $request->ip(),
             'role_id' => 3
         ]);
+
 
 //        $data = array();
 //        $data['email'] = $user->email;

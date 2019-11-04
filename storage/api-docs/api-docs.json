@@ -13,13 +13,41 @@
         },
         "version": "1.0.0"
     },
-    "host": "api.host.com",
-    "basePath": "/",
-    "schemes": [
-        "http",
-        "https"
-    ],
+    "basePath": "/api/v1",
     "paths": {
+        "game/all": {
+            "get": {
+                "summary": "Get list of all games",
+                "description": "Returns list of all games",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "mod/all/{game_id}": {
+            "get": {
+                "summary": "Get list of all mods",
+                "description": "Returns list of all mods",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "server/all": {
+            "get": {
+                "summary": "Get list of all servers",
+                "description": "Returns list of all servers",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
         "/login": {
             "post": {
                 "summary": "Login with jwt",
@@ -43,6 +71,78 @@
                 "responses": {
                     "200": {
                         "description": "Success"
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "summary": "Registration form",
+                "description": "Registration form with cart",
+                "parameters": [
+                    {
+                        "name": "first_name",
+                        "in": "formData",
+                        "description": "First name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "last_name",
+                        "in": "formData",
+                        "description": "Last name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "in": "formData",
+                        "description": "Username",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Neznam123!@",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "formData",
+                        "description": "Neznam123!@",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pin_code",
+                        "in": "formData",
+                        "description": "Pin code",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "country",
+                        "in": "formData",
+                        "description": "Country",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Api Not found!"
                     }
                 }
             }
