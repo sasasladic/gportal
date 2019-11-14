@@ -16,5 +16,9 @@ class ImageTableSeeder extends Seeder
             'path' => '/storage/image/no-image.png',
             'alt' => 'no-image'
         ]);
+        Image::create([
+            'path' => '/storage/image/payment-slip.png',
+            'alt' => 'payment-slip'
+        ]);
     }
 }

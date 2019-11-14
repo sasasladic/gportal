@@ -15,7 +15,8 @@ class OrdersTableSeeder extends Seeder
         Order::create([
             'user_id' => 1,
             'server_id' => 1,
-            'order_status_id' => 1
+            'order_status_id' => 1,
+            'image_id'=>2
         ]);
     }
 }

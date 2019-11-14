@@ -8,7 +8,6 @@
         <tr>
             <th>ID</th>
             <th>Title</th>
-            <th>Description</th>
             <th>User</th>
             <th>Priority</th>
             <th>Status</th>
@@ -21,7 +20,6 @@
             <tr>
                 <td>{{ $single->id }}</td>
                 <td>{{ $single->title }}</td>
-                <td>{{ $single->description }}</td>
                 <td>{{ $single->user->first_name . ' ' .$single->user->last_name}}</td>
                 <td>{{ $single->priority}}</td>
                 <td>@if( $single->status)<span style="color: darkgreen">Active</span>@else<span style="color: darkred"> Closed </span>@endif

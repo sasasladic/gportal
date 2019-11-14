@@ -91,6 +91,7 @@ Route::prefix('dashboard')->middleware('verified', 'authentication:Admin')->grou
      */
     Route::get('/order/all', 'Admin\OrderController@index')->name('order.index');
     Route::post('/order/update', 'Admin\OrderController@status_update')->name('order.status');
+    Route::get('/order/show/{order}', 'Admin\OrderController@show')->name('order.show');
 
 
 });

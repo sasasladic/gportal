@@ -9,7 +9,8 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'server_id',
-        'order_status_id'
+        'order_status_id',
+        'image_id'
     ];
 
     public function server()
@@ -25,5 +26,10 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
     }
 }

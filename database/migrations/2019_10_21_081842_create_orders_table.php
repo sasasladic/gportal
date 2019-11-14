@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('server_id');
             $table->unsignedInteger('order_status_id');
+            $table->unsignedInteger('image_id')->nullable();
             $table->timestamps();
         });
 
@@ -25,6 +26,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('server_id')->references('id')->on('servers');
             $table->foreign('order_status_id')->references('id')->on('order_statuses');
+            $table->foreign('image_id')->references('id')->on('images');
         });
     }
 
