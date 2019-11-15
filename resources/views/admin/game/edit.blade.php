@@ -40,7 +40,7 @@
                                                 <i class="material-icons">videogame_asset</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="name" class="form-control" placeholder="First name"
+                                    <input type="text" name="name" class="form-control" placeholder="Game name"
                                            autocomplete="off" value="{{ $data->name }}">
                                 </div>
                             </div>
@@ -52,7 +52,8 @@
                                                 <i class="material-icons">games</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="short_name" class="form-control" placeholder="Last name"
+                                    <input type="text" name="short_name" class="form-control"
+                                           placeholder="Short name for game"
                                            autocomplete="off" value="{{ $data->short_name }}">
                                 </div>
                             </div>
@@ -64,7 +65,8 @@
                                                 <i class="material-icons">view_week</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="short_name" class="form-control" placeholder="Last name"
+                                    <input type="text" name="slot_per_month" class="form-control"
+                                           placeholder="Price of slot per month"
                                            autocomplete="off"
                                            value="{{ $data->slot_per_month }} €">
                                 </div>

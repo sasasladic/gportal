@@ -51,8 +51,22 @@
                                                 <i class="material-icons">games</i>
                                             </span>
                                 <div class="form-line">
-                                    <input type="text" name="short_name" class="form-control" placeholder="Short name"
+                                    <input type="text" name="short_name" class="form-control"
+                                           placeholder="Short name for game"
                                            autocomplete="off" value="{{ old('short_name') }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <b>Slots per month</b>
+                            <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">view_week</i>
+                                            </span>
+                                <div class="form-line">
+                                    <input type="text" name="slot_per_month" class="form-control"
+                                           placeholder="Price of slot per month"
+                                           autocomplete="off" value="{{ old('slot_per_month') }}">
                                 </div>
                             </div>
                         </div>

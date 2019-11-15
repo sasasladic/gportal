@@ -9,6 +9,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Short name</th>
+            <th>Slot per month</th>
             <th style="width: 90px;">Actions</th>
         </tr>
         </thead>
@@ -18,6 +19,7 @@
                 <td>{{ $single->id }}</td>
                 <td>{{ $single->name }}</td>
                 <td>{{ $single->short_name }}</td>
+                <td>{{ $single->slot_per_month }} €</td>
                 <td>
                     <a href="edit/{{ $single->id}}"><i class="material-icons">edit</i></a>
                     <a href="remove/{{ $single->id }}"><i class="material-icons">delete_outline</i></a>
