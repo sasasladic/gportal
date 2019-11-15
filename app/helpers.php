@@ -1,7 +1,8 @@
 <?php
 
-use App\ProductImage;
+use App\Image;
 use Illuminate\Support\Facades\Mail;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
 if (!function_exists('send_email')) {
@@ -19,4 +20,22 @@ if (!function_exists('send_email')) {
                 ->from('test@mail.com', 'LaravelServer');
         });
     }
+}
+
+/**
+ * Save user image if it's set.
+ *
+ * @param UploadedFile $image
+ * @param string $alt
+ *
+ * @return object
+ */
+function saveImage(UploadedFile $image, string $alt): object
+{
+    $image->storeAs('public/image', $image->getClientOriginalName());
+    $imageObject = new Image();
+    $imageObject->path = '/storage/image/' . $image->getClientOriginalName();
+    $imageObject->alt = $alt;
+
+    return $imageObject->save() ? $imageObject : null;
 }

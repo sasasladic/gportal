@@ -42,7 +42,7 @@
                         </li>
                         <li>
                             <div class="title">
-                                <i class="material-icons">money</i> Price: 1999 {{config('constants.currency')}}
+                                <i class="material-icons">money</i> Price: 1999 €{{config('constants.currency')}}
                             </div>
                             <div class="content">
                                 <span style="margin-right: 100px">Payment slip</span>

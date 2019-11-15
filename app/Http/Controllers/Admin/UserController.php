@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserValidation;
-use App\Image;
 use App\Repositories\RoleRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
 use App\User;
@@ -14,7 +13,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UserController extends Controller
 {
@@ -72,7 +70,7 @@ class UserController extends Controller
         }
         if ($request->hasFile('image')) {
             $alt = $attributes['first_name'] . ' ' . $attributes['last_name'];
-            $image = $this->saveImage($request->file('image'), $alt);
+            $image = saveImage($request->file('image'), $alt);
             if ($image) {
                 $attributes['image_id'] = $image->id;
             }
@@ -124,7 +122,7 @@ class UserController extends Controller
         }
         if ($request->hasFile('image')) {
             $alt = $attributes['first_name'] . ' ' . $attributes['last_name'];
-            $image = $this->saveImage($request->file('image'), $alt);
+            $image = saveImage($request->file('image'), $alt);
             if ($image) {
                 $attributes['image_id'] = $image->id;
             }
@@ -145,23 +143,5 @@ class UserController extends Controller
     {
         return $this->users->delete($user) ? redirect()->route('user.index') : redirect()->back()->with('error',
             'Something went wrong, please try again.');
-    }
-
-    /**
-     * Save user image if it's set.
-     *
-     * @param UploadedFile $image
-     * @param string $alt
-     *
-     * @return object
-     */
-    public function saveImage(UploadedFile $image, string $alt): object
-    {
-        $image->storeAs('public/image', $image->getClientOriginalName());
-        $imageObject = new Image();
-        $imageObject->path = '/storage/image/' . $image->getClientOriginalName();
-        $imageObject->alt = $alt;
-
-        return $imageObject->save() ? $imageObject : null;
     }
 }

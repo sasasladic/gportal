@@ -24,6 +24,15 @@
                     @csrf
                     <div class="row clearfix">
                         <div class="col-md-6">
+                            <div class="input-group">
+                                <label>Image</label>
+                                <input id="image_media" name="image" type="file"
+                                       accept=".jfif,.jpg,.jpeg,.png,.gif" class="custom-file-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-6">
                             <b>Name</b>
                             <div class="input-group">
                                             <span class="input-group-addon">

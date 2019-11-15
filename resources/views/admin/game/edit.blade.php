@@ -24,6 +24,15 @@
                     @csrf
                     @method('PATCH')
                     <div class="row clearfix">
+                        <div class="col-md-12" style="text-align: center">
+                            <div class="input-group">
+                                <img src="{{$data->image->path}}" alt="{{$data->image->alt}}"
+                                     style="height: 400px;width: 800px;">
+                                <h6>Upload a different photo...</h6>
+                                <input id="image_media" name="image" type="file"
+                                       accept=".jfif,.jpg,.jpeg,.png,.gif" class="text-center center-block file-upload">
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <b>Name</b>
                             <div class="input-group">
@@ -45,6 +54,19 @@
                                 <div class="form-line">
                                     <input type="text" name="short_name" class="form-control" placeholder="Last name"
                                            autocomplete="off" value="{{ $data->short_name }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <b>Slot per mont</b>
+                            <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">view_week</i>
+                                            </span>
+                                <div class="form-line">
+                                    <input type="text" name="short_name" class="form-control" placeholder="Last name"
+                                           autocomplete="off"
+                                           value="{{ $data->slot_per_month }} €">
                                 </div>
                             </div>
                         </div>

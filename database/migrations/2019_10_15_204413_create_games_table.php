@@ -17,6 +17,13 @@ class CreateGamesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('short_name');
+            $table->unsignedInteger('image_id')->nullable();
+            $table->double('slot_per_month');
+
+        });
+
+        Schema::table('games', function ($table) {
+            $table->foreign('image_id')->references('id')->on('images');
         });
     }
 

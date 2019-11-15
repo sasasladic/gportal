@@ -14,7 +14,9 @@ class GameTableSeeder extends Seeder
     {
         Game::create([
             'name' => 'Counter Strike 1.6',
-            'short_name' => 'CS 1.6'
+            'short_name' => 'CS 1.6',
+            'image_id' => 3,
+            'slot_per_month' => 0.41
         ]);
 
     }

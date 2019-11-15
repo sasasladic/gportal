@@ -27,4 +27,9 @@ class Image extends Model
     {
         return $this->hasOne(Order::class);
     }
+
+    public function game()
+    {
+        return $this->hasOne(Game::class);
+    }
 }

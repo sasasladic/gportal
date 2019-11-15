@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Game extends Model
 {
@@ -10,11 +11,22 @@ class Game extends Model
 
     protected $fillable = [
         'name',
-        'short_name'
+        'short_name',
+        'image_id',
+        'slot_per_month'
     ];
 
     public function mods()
     {
         return $this->hasMany(Mod::class);
+    }
+
+    /**
+     * Return image associated with the game.
+     * @return BelongsTo
+     */
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
     }
 }

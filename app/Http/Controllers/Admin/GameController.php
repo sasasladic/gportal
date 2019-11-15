@@ -50,7 +50,16 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        return ($this->games->store($request->all())) ? redirect()->route('game.index') : redirect()->back()->with('error',
+        $attributes = $request->except('image');
+        if ($request->hasFile('image')) {
+            $alt = $attributes['name'];
+            $image = saveImage($request->file('image'), $alt);
+            if ($image) {
+                $attributes['image_id'] = $image->id;
+            }
+        }
+        $game = new Game($attributes);
+        return ($game->save()) ? redirect()->route('game.index') : redirect()->back()->with('error',
             'Something went wrong, please try again.')->withInput($request->all());
     }
 
@@ -85,8 +94,15 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        return $this->games->update($game,
-            $request->all()) ? redirect()->route('game.index') : redirect()->back()->with('error',
+        $attributes = $request->except('image');
+        if ($request->hasFile('image')) {
+            $alt = $attributes['name'];
+            $image = saveImage($request->file('image'), $alt);
+            if ($image) {
+                $attributes['image_id'] = $image->id;
+            }
+        }
+        return $game->update($attributes) ? redirect()->route('game.index') : redirect()->back()->with('error',
             'Something went wrong, please try again.')->withInput($request->all());
     }
 
