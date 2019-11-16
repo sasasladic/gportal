@@ -15,6 +15,47 @@
     },
     "basePath": "/api/v1",
     "paths": {
+        "/contact": {
+            "post": {
+                "summary": "Contact form",
+                "description": "Contact form for users",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "User name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "The email for contact",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subject",
+                        "in": "formData",
+                        "description": "Subject of mail",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "message",
+                        "in": "formData",
+                        "description": "Message which user sends",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
         "game/all": {
             "get": {
                 "summary": "Get list of all games",
