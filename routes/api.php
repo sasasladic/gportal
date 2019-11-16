@@ -29,6 +29,8 @@ Route::prefix('v1')->group(function () {
     Route::get('/server/all', 'API\ServerController@getUserServers');
     Route::get('/mod/all/{game_id}', 'API\ModController@findByGameId');
 
+    Route::post('/contact', 'API\ContactFormController@contact');
+
 });
 
 Route::group(['middleware' => ['jwt.verify']], function () {
