@@ -11,6 +11,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+/**
+ * @method static find($id)
+ */
 class User extends Authenticatable implements MustVerifyEmail, CanResetPassword, JWTSubject
 {
     use Notifiable;

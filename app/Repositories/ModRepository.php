@@ -13,12 +13,8 @@ class ModRepository implements ModRepositoryInterface
 
     public function store(array $attributes): bool
     {
-        try {
-            $mod = new Mod($attributes);
-            return $mod->save();
-        } catch (\Exception $exception) {
-            return false;
-        }
+        $mod = new Mod($attributes);
+        return $mod->save();
     }
 
     public function all(): Collection
@@ -38,11 +34,7 @@ class ModRepository implements ModRepositoryInterface
 
     public function update(Model $model, array $attributes): bool
     {
-        try {
-            return $model->update($attributes);
-        } catch (\Exception $exception) {
-            return false;
-        }
+        return $model->update($attributes);
     }
 
     public function delete(Model $model): bool

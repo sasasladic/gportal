@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static find($id)
+ */
 class Role extends Model
 {
     public $timestamps = false;
@@ -17,7 +20,8 @@ class Role extends Model
         'name'
     ];
 
-    public function users(){
+    public function users()
+    {
         return $this->hasMany(User::class);
     }
 }

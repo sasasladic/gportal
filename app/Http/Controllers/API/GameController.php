@@ -4,11 +4,26 @@ namespace App\Http\Controllers\API;
 
 use App\Game;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Games;
+use App\Repositories\GameRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
+
+    private $game_repo;
+
+    /**
+     * GameController constructor.
+     * @param $game_repo
+     */
+    public function __construct(GameRepositoryInterface $game_repo)
+    {
+        $this->game_repo = $game_repo;
+    }
+
+
     /**
      * @SWG\Get(
      *      path="game/all",
@@ -25,7 +40,7 @@ class GameController extends Controller
      */
     public function index()
     {
-        return response()->json(['games' => Game::all()]);
+        return (new Games($this->game_repo->all()))->response()->setStatusCode(200);
     }
 
     /**

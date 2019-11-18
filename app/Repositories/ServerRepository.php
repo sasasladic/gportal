@@ -13,14 +13,10 @@ class ServerRepository implements ServerRepositoryInterface
 
     public function store(array $attributes): bool
     {
-        try {
-            $attributes['price'] = '10.0';
-            $attributes['status'] = 1;
-            $server = new Server($attributes);
-            return $server->save();
-        } catch (\Exception $exception) {
-            return false;
-        }
+        $attributes['price'] = '10.0';
+        $attributes['status'] = 1;
+        $server = new Server($attributes);
+        return $server->save();
     }
 
     public function all(): Collection
@@ -40,11 +36,7 @@ class ServerRepository implements ServerRepositoryInterface
 
     public function update(Model $model, array $attributes): bool
     {
-        try {
-            return $model->update($attributes);
-        } catch (\Exception $exception) {
-            return false;
-        }
+        return $model->update($attributes);
     }
 
     public function delete(Model $model): bool

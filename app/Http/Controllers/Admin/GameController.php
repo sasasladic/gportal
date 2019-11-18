@@ -58,8 +58,7 @@ class GameController extends Controller
                 $attributes['image_id'] = $image->id;
             }
         }
-        $game = new Game($attributes);
-        return ($game->save()) ? redirect()->route('game.index') : redirect()->back()->with('error',
+        return ($this->games->store($attributes)) ? redirect()->route('game.index') : redirect()->back()->with('error',
             'Something went wrong, please try again.')->withInput($request->all());
     }
 
@@ -102,7 +101,8 @@ class GameController extends Controller
                 $attributes['image_id'] = $image->id;
             }
         }
-        return $game->update($attributes) ? redirect()->route('game.index') : redirect()->back()->with('error',
+        return $this->games->update($game,
+            $attributes) ? redirect()->route('game.index') : redirect()->back()->with('error',
             'Something went wrong, please try again.')->withInput($request->all());
     }
 

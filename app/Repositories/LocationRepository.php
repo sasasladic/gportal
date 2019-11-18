@@ -13,12 +13,8 @@ class LocationRepository implements LocationRepositoryInterface
 
     public function store(array $attributes): bool
     {
-        try {
-            $game = new Location($attributes);
-            return $game->save();
-        } catch (\Exception $exception) {
-            return false;
-        }
+        $game = new Location($attributes);
+        return $game->save();
     }
 
     public function all(): Collection
@@ -33,11 +29,7 @@ class LocationRepository implements LocationRepositoryInterface
 
     public function update(Model $model, array $attributes): bool
     {
-        try {
-            return $model->update($attributes);
-        } catch (\Exception $exception) {
-            return false;
-        }
+        return $model->update($attributes);
     }
 
     public function delete(Model $model): bool

@@ -68,7 +68,7 @@
                                     <input type="text" name="slot_per_month" class="form-control"
                                            placeholder="Price of slot per month"
                                            autocomplete="off"
-                                           value="{{ $data->slot_per_month }} €">
+                                           value="{{ $data->slot_per_month }}">
                                 </div>
                             </div>
                         </div>

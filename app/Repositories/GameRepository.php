@@ -12,12 +12,8 @@ class GameRepository implements GameRepositoryInterface
 
     public function store(array $attributes): bool
     {
-        try {
-            $game = new Game($attributes);
-            return $game->save();
-        } catch (\Exception $exception) {
-            return false;
-        }
+        $game = new Game($attributes);
+        return $game->save();
     }
 
     public function all(): Collection
@@ -32,11 +28,7 @@ class GameRepository implements GameRepositoryInterface
 
     public function update(Model $model, array $attributes): bool
     {
-        try {
-            return $model->update($attributes);
-        } catch (\Exception $exception) {
-            return false;
-        }
+        return $model->update($attributes);
     }
 
     public function delete(Model $model): bool

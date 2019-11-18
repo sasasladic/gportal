@@ -13,12 +13,8 @@ class MachineRepository implements MachineRepositoryInterface
 
     public function store(array $attributes): bool
     {
-        try {
-            $machine = new Machine($attributes);
-            return $machine->save();
-        } catch (\Exception $exception) {
-            return false;
-        }
+        $machine = new Machine($attributes);
+        return $machine->save();
     }
 
     public function all(): Collection
@@ -33,11 +29,7 @@ class MachineRepository implements MachineRepositoryInterface
 
     public function update(Model $model, array $attributes): bool
     {
-        try {
-            return $model->update($attributes);
-        } catch (\Exception $exception) {
-            return false;
-        }
+        return $model->update($attributes);
     }
 
     public function delete(Model $model): bool

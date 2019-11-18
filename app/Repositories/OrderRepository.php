@@ -13,12 +13,8 @@ class OrderRepository implements OrderRepositoryInterface
 
     public function store(array $attributes): bool
     {
-        try {
-            $game = new Order($attributes);
-            return $game->save();
-        } catch (\Exception $exception) {
-            return false;
-        }
+        $game = new Order($attributes);
+        return $game->save();
     }
 
     public function all(): Collection
@@ -33,11 +29,7 @@ class OrderRepository implements OrderRepositoryInterface
 
     public function update(Model $model, array $attributes): bool
     {
-        try {
-            return $model->update($attributes);
-        } catch (\Exception $exception) {
-            return false;
-        }
+        return $model->update($attributes);
     }
 
     public function delete(Model $model): bool
