@@ -125,8 +125,8 @@
     <aside id="leftsidebar" class="sidebar">
         <div class="user-info">
             <div class="image">
-                <img src="/storage/image/user.png"
-                     width="48" height="48" alt="User">
+                <img src={{Auth::user()->image->path}}
+                    width="48" height="48" alt="User">
             </div>
             <div class="info-container">
                 <div class="name" data-toggle="dropdown" aria-haspopup="true"
