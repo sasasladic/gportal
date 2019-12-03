@@ -7,6 +7,7 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Order no</th>
             <th>Client</th>
             <th>Username</th>
             <th>Server</th>
@@ -19,6 +20,7 @@
         @foreach($data as $single)
             <tr>
                 <td>{{ $single->id }}</td>
+                <td>{{ $single->order_no }}</td>
                 <td>{{ $single->user->first_name . " " . $single->user->last_name}}</td>
                 <td>{{ $single->user->username}}</td>
                 <td>{{ $single->server->name }}</td>

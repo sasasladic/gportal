@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Order;
 use App\OrderStatus;
 use App\Repositories\OrderRepositoryInterface;
+use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -122,9 +123,28 @@ class OrderController extends Controller
      */
     public function toPdf($id)
     {
-        $data['number'] = 1;
-        $pdf = PDF::loadView('admin.reports.order', $data);
-        $file_name = 'test.pdf';
-        return $pdf->download($file_name);
+        $data = array();
+        $order = $this->orders->get($id);
+        $data['order_no'] = $order->order_no;
+        $data['order_status'] = isset($order->order_status->name) ? $order->order_status->name : 'Not selected';
+        $data['created_at'] = $order->created_at;
+        $data['server'] = $order->server->name;
+        $sum = 0;
+        if ($order->server) {
+            $data['id'] = 1;
+            $data['name'] = $order->server->name;
+            $data['slots'] = $order->server->slots;
+            $data['price_per_slot'] = $order->server->price;
+            $data['mod'] = $order->server->mod->name;
+            $data['sum'] = $order->server->slots * $order->server->price;
+            $data['user'] = $order->user->first_name . ' ' . $order->user->last_name;
+            $data['user_id'] = $order->user->id;
+            $data['country'] = $order->user->country;
+//            $data['image'] = File::get('storage/image/logo.png');
+            $pdf = $pdf = PDF::loadView('admin.reports.order', $data);
+            $file_name = $data['order_no'] . '_' . '' . $data['created_at']->format('d-m-y') . '.pdf';
+            return $pdf->download($file_name);
+        }
+        return redirect()->back();
     }
 }
