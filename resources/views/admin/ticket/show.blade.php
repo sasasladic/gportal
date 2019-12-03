@@ -9,6 +9,9 @@
                     <h2 class="reviews">{{$data->title}}</h2>
                     <span class="created_at" style="padding-top: 25px;">{{$data->created_at}}</span>
                 </div>
+                <div class="question-box" style="margin-bottom: 40px;margin-top: 25px;">
+                    <h4 class="question">{{$data->description}}</h4>
+                </div>
                 @foreach($data->comments as $comment)
                     <div class="comment-tabs">
                         <div class="tab-content">
