@@ -38,6 +38,7 @@
                 <td>{{ date("d.m.Y H:i", strtotime($single->created_at)) }}</td>
                 <td>
                     <a href="show/{{ $single->id }}"><i class="material-icons">visibility</i></a>
+                    <a href="toPDF/{{ $single->id }}"><i class="material-icons">move_to_inbox</i></a>
                     {{--                    <a href="edit/{{ $single->id}}"><i class="material-icons">edit</i></a>--}}
                     {{--                    <a href="remove/{{ $single->id }}"><i class="material-icons">delete_outline</i></a>--}}
                 </td>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Order;
 use App\OrderStatus;
 use App\Repositories\OrderRepositoryInterface;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -111,5 +112,19 @@ class OrderController extends Controller
         send_email('admin.email.server_status', $data);
 
         return "Success";
+    }
+
+    /**
+     * Generate .pdf for order (invoice)
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function toPdf($id)
+    {
+        $data['number'] = 1;
+        $pdf = PDF::loadView('admin.reports.order', $data);
+        $file_name = 'test.pdf';
+        return $pdf->download($file_name);
     }
 }
