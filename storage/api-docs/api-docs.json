@@ -88,19 +88,40 @@
                         "in": "formData",
                         "description": "Which user is making order",
                         "required": true,
-                        "type": "string"
+                        "type": "integer"
                     },
                     {
-                        "name": "serverId",
+                        "name": "gameId",
                         "in": "formData",
-                        "description": "Which server wants",
+                        "description": "Which game user wants",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "location",
+                        "in": "formData",
+                        "description": "Where to be stored",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "slots",
+                        "in": "formData",
+                        "description": "How many slots",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "months",
+                        "in": "formData",
+                        "description": "How long to be active",
                         "required": true,
                         "type": "string"
                     },
                     {
-                        "name": "slotNumber",
+                        "name": "modId",
                         "in": "formData",
-                        "description": "How many pings",
+                        "description": "Which mod",
                         "required": true,
                         "type": "string"
                     }
