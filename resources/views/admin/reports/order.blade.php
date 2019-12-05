@@ -56,12 +56,15 @@
 </head>
 <body>
 <div style="float: right">
-    <h1 style="margin-right: 40px;color: #1d68a7;font-size: 35px;">FAKTURA</h1>
+    <h1 style="margin-right: 10px;color: #1d68a7;font-size: 35px;margin-top: 40px;">FAKTURA</h1>
 </div>
 <div style="margin-top: 2.7em">
     <table class="table2">
         <tr style="color: #1d68a7;">
             <th style="font-size: 20px;">[IME PREDUZECA]</th>
+        </tr>
+        <tr>
+            <th></th>
         </tr>
         <tr>
             <td>[Ulica i broj]</td>
@@ -77,8 +80,8 @@
         </tr>
     </table>
 </div>
-<div style="width: 300px;float: right;">
-    <table style="width: 100%;margin-top: 30px;" class="table1">
+<div style="width: 315px;float: right;">
+    <table style="width: 100%;margin-top: 12px;" class="table1">
         <tr style="background-color: #1d68a7; color: white">
             <th>BROJ FAKTURE</th>
             <th>DATUM</th>
@@ -87,9 +90,15 @@
             <td>1</td>
             <td>03-12-2019</td>
         </tr>
-    </table>
-    <table style="width: 100%;margin-top: 25px;" class="table1">
-        <tr style="background-color: #1d68a7; color: white">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr style="background-color: #1d68a7; color: white;">
             <th>ID KLIJENTA</th>
             <th>USLOVI</th>
         </tr>
@@ -113,6 +122,9 @@
         </tr>
         <tr>
             <td>Novi Sad 21000</td>
+        </tr>
+        <tr>
+            <td>[e-mail]</td>
         </tr>
     </table>
 </div>
