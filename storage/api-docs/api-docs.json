@@ -78,6 +78,40 @@
                 }
             }
         },
+        "/order": {
+            "post": {
+                "summary": "Login with jwt",
+                "description": "Make order",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "formData",
+                        "description": "Which user is making order",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "serverId",
+                        "in": "formData",
+                        "description": "Which server wants",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pingNumber",
+                        "in": "formData",
+                        "description": "How many pings",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
         "server/all": {
             "get": {
                 "summary": "Get list of all servers",
