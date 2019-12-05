@@ -42,7 +42,7 @@ class OrderController extends Controller
      *         required=true,
      *     ),
      *     @SWG\Parameter(
-     *         name="pingNumber",
+     *         name="slotNumber",
      *         in="formData",
      *         type="string",
      *         description="How many pings",

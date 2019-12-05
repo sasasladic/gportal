@@ -98,7 +98,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "pingNumber",
+                        "name": "slotNumber",
                         "in": "formData",
                         "description": "How many pings",
                         "required": true,
