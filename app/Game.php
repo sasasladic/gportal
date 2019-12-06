@@ -35,6 +35,6 @@ class Game extends Model
 
     public function server()
     {
-        return $this->belongsToMany(Server::class);
+        return $this->hasMany(Server::class);
     }
 }

@@ -57,6 +57,7 @@ class UserController extends Controller
         }
 
         $user = User::where('email', request(['email']))->first();
+        $user->image;
 
         return response()->json([
             'token' => $token,
@@ -162,6 +163,7 @@ class UserController extends Controller
 //        $data['subject'] = 'Email confirmation';
 //        send_email('email.registration', $data);
         $token = JWTAuth::fromUser($user);
+        $user->role;
         return response()->json([
             'token' => $token,
             'expiration' => time(),

@@ -87,8 +87,8 @@
             <th>DATUM</th>
         </tr>
         <tr>
-            <td>1</td>
-            <td>03-12-2019</td>
+            <td>{{$order_no}}</td>
+            <td>{{$created_at}}</td>
         </tr>
         <tr>
             <th></th>
@@ -124,7 +124,7 @@
             <td>Novi Sad 21000</td>
         </tr>
         <tr>
-            <td>[e-mail]</td>
+            <td>{{$email}}</td>
         </tr>
     </table>
 </div>
@@ -153,8 +153,7 @@
         <td colspan="2" style="height:30px;"><b>{{$sum . ' '. config('constants.currency')}}</b></td>
     </tr>
     <tr style="height:30px;">
-        <td colspan="4" style="text-align: left;height:30px;padding-left: 15px;"><b>The prices are without VAT and
-                without transport expenses</b></td>
+        <td colspan="4" style="text-align: left;height:30px;padding-left: 15px;"><b>The prices are without VAT</b></td>
         <td colspan="2" style="height:30px;"></td>
     </tr>
     <tr>

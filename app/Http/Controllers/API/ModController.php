@@ -38,6 +38,11 @@ class ModController extends Controller
      */
     public function findByGameId(int $game_id)
     {
-        return response()->json(['mods' => $this->mod_repo->findByGameId($game_id)]);
+        $mods = $this->mod_repo->findByGameId($game_id);
+        foreach ($mods as $mod) {
+            $mod->game;
+            $mod->game->image;
+        }
+        return response()->json(['mods' => $mods]);
     }
 }

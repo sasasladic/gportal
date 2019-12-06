@@ -40,7 +40,14 @@ class ServerController extends Controller
     public function getUserServers()
     {
         $user = JWTAuth::parseToken()->authenticate();
-        return response()->json(['servers' => $this->server_repo->getUserServers($user->id)]);
+        $servers = $this->server_repo->getUserServers($user->id);
+        foreach ($servers as $server) {
+            $server->machine;
+            $server->mod;
+            $server->user;
+            $server->game;
+        }
+        return response()->json(['servers' => $servers]);
     }
 
     /**

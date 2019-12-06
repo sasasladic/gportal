@@ -42,11 +42,15 @@
                         </li>
                         <li>
                             <div class="title">
-                                <i class="material-icons">money</i> Price: 1999 €{{config('constants.currency')}}
+                                <i class="material-icons">money</i>
+                                Price: {{$data->price}}{{config('constants.currency')}}
                             </div>
                             <div class="content">
                                 <span style="margin-right: 100px">Payment slip</span>
-                                <img src="{{$data->image->path}}" width="420" height="250" alt="{{$data->image->alt}}">
+                                @isset($data->image->path)
+                                    <img src="{{$data->image->path}}" width="420" height="250"
+                                         alt="{{$data->image->alt}}">
+                                @endisset
                             </div>
                         </li>
                     </ul>

@@ -127,22 +127,24 @@ class OrderController extends Controller
         $order = $this->orders->get($id);
         $data['order_no'] = $order->order_no;
         $data['order_status'] = isset($order->order_status->name) ? $order->order_status->name : 'Not selected';
-        $data['created_at'] = $order->created_at;
+        $time = strtotime($order->created_at);
+        $data['created_at'] = date('d-m-Y H:i', $time);
         $data['server'] = $order->server->name;
         $sum = 0;
         if ($order->server) {
             $data['id'] = 1;
             $data['name'] = $order->server->name;
             $data['slots'] = $order->server->slots;
-            $data['price_per_slot'] = $order->server->price;
+            $data['price_per_slot'] = $order->server->machine->price_per_slot;
             $data['mod'] = $order->server->mod->name;
-            $data['sum'] = $order->server->slots * $order->server->price;
+            $data['sum'] = $order->server->slots * $order->server->machine->price_per_slot;
             $data['user'] = $order->user->first_name . ' ' . $order->user->last_name;
             $data['user_id'] = $order->user->id;
+            $data['email'] = $order->user->email;
             $data['country'] = $order->user->country;
 //            $data['image'] = File::get('storage/image/logo.png');
             $pdf = $pdf = PDF::loadView('admin.reports.order', $data);
-            $file_name = $data['order_no'] . '_' . '' . $data['created_at']->format('d-m-y') . '.pdf';
+            $file_name = $data['order_no'] . '_' . '' . $data['created_at'] . '.pdf';
             return $pdf->download($file_name);
         }
         return redirect()->back();

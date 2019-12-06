@@ -92,6 +92,7 @@ class OrderController extends Controller
      *     )
      *
      * @param Request $request
+     * @return Order
      */
     public function makeOrder(Request $request)
     {
@@ -120,7 +121,7 @@ class OrderController extends Controller
         $order->user;
         $order->server;
         $order->order_status;
-        
+
         return $order;
     }
 }
