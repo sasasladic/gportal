@@ -14,7 +14,8 @@ class Order extends Model
         'user_id',
         'server_id',
         'order_status_id',
-        'image_id'
+        'image_id',
+        'price',
     ];
 
     public function server()

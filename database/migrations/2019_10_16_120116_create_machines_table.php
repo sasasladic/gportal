@@ -21,6 +21,7 @@ class CreateMachinesTable extends Migration
             $table->string('root_username');
             $table->string('root_password');
             $table->unsignedInteger('location_id');
+            $table->double('price_per_slot');
             $table->timestamps();
         });
 

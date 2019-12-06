@@ -18,12 +18,12 @@ class ServersTableSeeder extends Seeder
             'username' => 'test',
             'password' => 'test',
             'slots' => 12,
-            'price' => 0.4,
             'status' => 'Deaktiviran',
             'expire_on' => date("Y-m-d H:i:s"),
             'machine_id' => 1,
             'mod_id' => 1,
-            'user_id' => 1
+            'user_id' => 1,
+            'game_id' => 1
         ]);
     }
 }

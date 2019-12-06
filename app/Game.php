@@ -32,4 +32,9 @@ class Game extends Model
     {
         return $this->belongsTo(Image::class);
     }
+
+    public function server()
+    {
+        return $this->belongsToMany(Server::class);
+    }
 }

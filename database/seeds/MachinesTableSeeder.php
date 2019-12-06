@@ -18,7 +18,8 @@ class MachinesTableSeeder extends Seeder
             'ssh_port' => '8080',
             'root_username' => 'ssladic',
             'root_password' => 'neznam123',
-            'location_id' => 1
+            'location_id' => 1,
+            'price_per_slot' => 0.4
         ]);
     }
 }

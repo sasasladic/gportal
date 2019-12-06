@@ -15,12 +15,12 @@ class Server extends Model
         'username',
         'password',
         'slots',
-        'price',
         'status',
         'expire_on',
         'machine_id',
         'mod_id',
-        'user_id'
+        'user_id',
+        'game_id'
     ];
 
     public function machine()
@@ -39,6 +39,11 @@ class Server extends Model
     }
 
     public function order()
+    {
+        return $this->hasOne(Game::class);
+    }
+
+    public function game()
     {
         return $this->hasOne(Game::class);
     }

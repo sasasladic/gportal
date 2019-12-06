@@ -13,7 +13,6 @@ class ServerRepository implements ServerRepositoryInterface
 
     public function store(array $attributes): bool
     {
-        $attributes['price'] = '10.0';
         $attributes['status'] = 1;
         $server = new Server($attributes);
         return $server->save();

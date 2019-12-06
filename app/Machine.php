@@ -16,7 +16,8 @@ class Machine extends Model
         'ssh_port',
         'root_username',
         'root_password',
-        'location_id'
+        'location_id',
+        'price_per_slot'
     ];
 
     public function location()

@@ -17,15 +17,15 @@ class CreateServersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('slots');
-            $table->integer('port');
+            $table->integer('port')->nullable();
             $table->string('status');
-            $table->string('username');
-            $table->string('password');
-            $table->double('price');
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
             $table->timestamp('expire_on')->nullable();
             $table->unsignedInteger('machine_id');
-            $table->unsignedInteger('mod_id');
+            $table->unsignedInteger('mod_id')->nullable();
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('game_id');
             $table->timestamps();
         });
 
@@ -33,6 +33,7 @@ class CreateServersTable extends Migration
             $table->foreign('machine_id')->references('id')->on('machines')->onDelete('cascade');
             $table->foreign('mod_id')->references('id')->on('mods')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
         });
     }
 
