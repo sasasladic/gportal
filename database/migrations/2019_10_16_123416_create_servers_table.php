@@ -30,10 +30,10 @@ class CreateServersTable extends Migration
         });
 
         Schema::table('servers', function ($table) {
-            $table->foreign('machine_id')->references('id')->on('machines')->onDelete('cascade');
-            $table->foreign('mod_id')->references('id')->on('mods')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
+            $table->foreign('machine_id')->references('id')->on('machines');
+            $table->foreign('mod_id')->references('id')->on('mods');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('game_id')->references('id')->on('games');
         });
     }
 

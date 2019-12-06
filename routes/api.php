@@ -34,7 +34,9 @@ Route::prefix('v1')->group(function () {
 });
 
 Route::prefix('v1')->middleware('jwt.verify')->group(function () {
-    Route::get('user', 'UserController@getAuthenticatedUser');
+    Route::get('user', 'API\UserController@getAuthenticatedUser');
+
+    Route::post('/user/profile/update', 'API\UserController@updateProfile');
 
     Route::post('/order', 'API\OrderController@makeOrder');
 });

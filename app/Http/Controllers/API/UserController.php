@@ -8,6 +8,7 @@ use App\Http\Requests\UserValidation;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -207,5 +208,85 @@ class UserController extends Controller
         }
 
         return response()->json(compact('user'));
+    }
+
+
+    /**
+     * @SWG\Post(
+     *      path="/user/profile/update",
+     *      summary="Update user profile",
+     *      description="Update user profile",
+     * @SWG\Parameter(
+     *         name="first_name",
+     *         in="formData",
+     *         type="string",
+     *         description="First name"
+     *     ),
+     * @SWG\Parameter(
+     *         name="last_name",
+     *         in="formData",
+     *         type="string",
+     *         description="Last name"
+     *     ),
+     * @SWG\Parameter(
+     *         name="username",
+     *         in="formData",
+     *         type="string",
+     *         description="Username"
+     *     ),
+     * @SWG\Parameter(
+     *         name="email",
+     *         in="formData",
+     *         type="string",
+     *         description="Email"
+     *     ),
+     * @SWG\Parameter(
+     *         name="password",
+     *         in="formData",
+     *         type="string",
+     *         description="Neznam123!@"
+     *     ),
+     *
+     * @SWG\Parameter(
+     *         name="pin_code",
+     *         in="formData",
+     *         type="string",
+     *         description="Pin code"
+     *     ),
+     * @SWG\Parameter(
+     *         name="country",
+     *         in="formData",
+     *         type="string",
+     *         description="Country"
+     *     ),
+     * @SWG\Response(
+     *          response=200,
+     *          description="Success"
+     *       ),
+     * @SWG\Response(
+     *          response=404,
+     *          description="Api Not found!"
+     *       ),
+     *     )
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function updateProfile(Request $request)
+    {
+        $user = JWTAuth::parseToken()->authenticate();
+        $attributes = $request->except('image');
+        if (isset($attributes['password']) && $attributes['password'] != null) {
+            $attributes['password'] = Hash::make($attributes['password']);
+        }
+        if ($request->hasFile('image')) {
+            $alt = $attributes['first_name'] . ' ' . $attributes['last_name'];
+            $image = saveImage($request->file('image'), $alt);
+            if ($image) {
+                $attributes['image_id'] = $image->id;
+            }
+        }
+        $user->update($attributes);
+        return response()->json('Success', 200);
+
     }
 }

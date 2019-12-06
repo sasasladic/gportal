@@ -253,6 +253,64 @@
                     }
                 }
             }
+        },
+        "/user/profile/update": {
+            "post": {
+                "summary": "Update user profile",
+                "description": "Update user profile",
+                "parameters": [
+                    {
+                        "name": "first_name",
+                        "in": "formData",
+                        "description": "First name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "last_name",
+                        "in": "formData",
+                        "description": "Last name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "in": "formData",
+                        "description": "Username",
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Neznam123!@",
+                        "type": "string"
+                    },
+                    {
+                        "name": "pin_code",
+                        "in": "formData",
+                        "description": "Pin code",
+                        "type": "string"
+                    },
+                    {
+                        "name": "country",
+                        "in": "formData",
+                        "description": "Country",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Api Not found!"
+                    }
+                }
+            }
         }
     },
     "definitions": {},
