@@ -5,4 +5,10 @@ table th {
 table td {
   text-align: center;
 }
+.bootstrap-select .bs-searchbox{
+    margin-left: 38px;
+}
+.bootstrap-select.btn-group .dropdown-menu.inner{
+    margin-left: 25px !important;
+}
 
