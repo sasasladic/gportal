@@ -105,13 +105,10 @@
                                     <label>Role</label>
                                     <select name="role_id" class="form-control show-tick" data-live-search="true">
                                         <option selected value="">Select role</option>
-                                        @foreach($roles as $role)
-                                            <option disabled value="">Select role</option>
                                             @foreach($roles as $role)
                                                 <option value="{{ $role->id }}"
                                                         @if($role->id == $data->role_id) selected @endif>{{ $role->name }}</option>
                                             @endforeach
-                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -160,4 +157,12 @@
             </div>
         </div>
     </div>
+<script>
+    $(document).ready(function () {
+        $('.bootstrap-select').click(function() {
+            console.log(123);
+        });
+    });
+</script>
+
 @endsection
