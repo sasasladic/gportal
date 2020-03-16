@@ -15,7 +15,11 @@ Route::get('/', function () {
     return redirect(route('login'));
 });
 
-Auth::routes(['verify' => true]);
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'verify' => false,
+]);
 
 Route::get('profile', function () {
     // Only verified users may enter...

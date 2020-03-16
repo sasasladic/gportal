@@ -99,7 +99,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <div class="form-line">
                                     <label>Role</label>
@@ -107,10 +107,10 @@
                                         <option selected value="">Select role</option>
                                         @foreach($roles as $role)
                                             <option disabled value="">Select role</option>
-                                            @foreach($roles as $role)
                                                 <option value="{{ $role->id }}"
-                                                        @if($role->id == $data->role_id) selected @endif>{{ $role->name }}</option>
-                                            @endforeach
+                                                        @if($role->id == $data->role_id)
+                                                        selected @endif>{{ $role->name }}
+                                                </option>
                                         @endforeach
                                     </select>
                                 </div>

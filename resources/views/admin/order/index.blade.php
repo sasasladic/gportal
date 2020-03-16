@@ -25,7 +25,7 @@
                 <td>{{ $single->user->username}}</td>
                 <td>{{ $single->server->name }}</td>
                 <td>
-                    <form id="status_form" class="status_form" action="" method="post" style="width: 70px;">
+                    <form id="status_form" class="status_form" action="" method="post">
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                         <select class="changeStatus" name="changeStatus">
                             @foreach($all_statuses as $status)

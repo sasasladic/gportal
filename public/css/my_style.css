@@ -5,4 +5,7 @@ table th {
 table td {
   text-align: center;
 }
+.dropdown-menu .open{
+    overflow: no-display;
+}
 

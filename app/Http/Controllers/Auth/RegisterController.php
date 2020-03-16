@@ -42,9 +42,6 @@ class RegisterController extends Controller
     }
 
     public function register(UserValidation $request) {
-        $data = $request->all();
-        $data['ip'] = $request->ip();
-        $this->create($data);
         return redirect()->route('login');
     }
 
