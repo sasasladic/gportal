@@ -106,7 +106,6 @@
                                     <select name="role_id" class="form-control show-tick" data-live-search="true">
                                         <option selected value="">Select role</option>
                                         @foreach($roles as $role)
-                                            <option disabled value="">Select role</option>
                                                 <option value="{{ $role->id }}"
                                                         @if($role->id == $data->role_id)
                                                         selected @endif>{{ $role->name }}
