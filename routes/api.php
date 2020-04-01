@@ -17,15 +17,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->group(function () {
+Route::prefix('v1')->group(function ()
+{
+    /*
+     * Auth routes
+     */
+    Route::post('/login', 'API\Auth\AuthController@login');
+    Route::post('/register', 'API\Auth\AuthController@register');
 
     /*
-     * Login route
-     */
-    Route::post('/login', 'API\UserController@login');
-    Route::post('/register', 'API\UserController@register');
+      * Verify email
+      */
+    Route::get('email/verify/{id}/{hash}', 'API\Auth\VerificationController@verify')->name('verification.verify');
+    Route::get('email/resend', 'API\Auth\VerificationController@resend')->name('verification.resend');
+
 
     Route::get('/game/all', 'API\GameController@index');
+
     Route::get('/server/all', 'API\ServerController@getUserServers');
     Route::get('/mod/all/{game_id}', 'API\ModController@findByGameId');
 
@@ -33,7 +41,9 @@ Route::prefix('v1')->group(function () {
 
 });
 
-Route::prefix('v1')->middleware('jwt.verify')->group(function () {
+Route::prefix('v1')->middleware('auth:api')->group(function ()
+{
+
     Route::get('user', 'API\UserController@getAuthenticatedUser');
 
     Route::post('/user/profile/update', 'API\UserController@updateProfile');

@@ -23,9 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('pin_code')->nullable();
             $table->string('country');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->string('ip_address');
-            $table->unsignedInteger('role_id');
+            $table->unsignedInteger('role_id')->default(3);
             $table->timestamp('last_active')->nullable();
             $table->unsignedInteger('image_id')->nullable()->default(1);
             $table->rememberToken();

@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany as HasManyAlias;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
-use Tymon\JWTAuth\Contracts\JWTSubject;
+use Laravel\Passport\HasApiTokens;
 
 /**
  * @method static find($id)
  */
-class User extends Authenticatable implements MustVerifyEmail, CanResetPassword, JWTSubject
+class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -142,16 +142,6 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
     public function hasRole($role)
     {
         return null !== $this->role()->where('name', $role)->first();
-    }
-
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    public function getJWTCustomClaims()
-    {
-        return [];
     }
 
 }
