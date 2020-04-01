@@ -59,7 +59,7 @@ class VerificationController extends Controller
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
         }
-        header("Location: http://localhost:8080/verified");
+        header("Location: https://nsanegaming.com/verified");
         exit();
 //        return response(['message' => 'Successfully verified']);
     }
