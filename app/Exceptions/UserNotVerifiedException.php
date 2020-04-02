@@ -11,6 +11,6 @@ class UserNotVerifiedException extends Exception
      *
      * @var string
      */
-    protected $message = 'This user is not verified.';
+    protected $message = 'Please verify you email address!';
     protected $code = '403';
 }
