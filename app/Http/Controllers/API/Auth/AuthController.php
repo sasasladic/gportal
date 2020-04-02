@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\Auth;
 
+use App\Exceptions\UserNotVerifiedException;
 use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
@@ -35,6 +36,12 @@ class AuthController extends Controller
         ]);
     }
 
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws UserNotVerifiedException
+     */
     public function login(Request $request)
     {
         $loginData = $request->validate([
@@ -47,7 +54,7 @@ class AuthController extends Controller
         }
 
         if(!auth()->user()->email_verified_at){
-            return response(['message' => 'You need to verify you email!']);
+            throw new UserNotVerifiedException;
         }
 
 
