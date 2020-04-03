@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -50,7 +51,9 @@ class AuthController extends Controller
         ]);
 
         if(!auth()->attempt($loginData)){
-            return response(['message' => 'Invalid credentials data']);
+            throw ValidationException::withMessages([
+                'message' => [trans('auth.failed')],
+            ]);
         }
 
         if(!auth()->user()->email_verified_at){
