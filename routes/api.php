@@ -26,6 +26,12 @@ Route::prefix('v1')->group(function ()
     Route::post('/register', 'API\Auth\AuthController@register');
 
     /*
+     * Password problems
+     */
+    Route::post('password/email', 'API\Auth\ForgotPasswordController@sendResetLinkEmail');
+    Route::post('password/reset', 'API\Auth\ResetPasswordController@reset');
+
+    /*
       * Verify email
       */
     Route::get('email/verify/{id}/{hash}', 'API\Auth\VerificationController@verify')->name('verification.verify');

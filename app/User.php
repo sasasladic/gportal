@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\PasswordResetNotification;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -143,5 +144,15 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     {
         return null !== $this->role()->where('name', $role)->first();
     }
+
+
+    /**
+     * @param string $token
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordResetNotification($token));
+    }
+
 
 }
