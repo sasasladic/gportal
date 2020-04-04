@@ -56,16 +56,16 @@ class ContactFormController extends Controller
      */
     public function contact(Request $request)
     {
-        $data['name'] = $request->get('name');
-        $data['email'] = 'sasa96.sladic@gmail.com';
-        $data['email_from'] = $request->get('email');
-        $data['subject'] = $request->get('subject');
-        $data['content'] = $request->get('message');
+        $data = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'subject' => 'max:50',
+            'content' => 'required|string|min:10'
+        ]);
 
         send_email('admin.email.contact_form_email', $data);
 
-
-        return response()->json('Success', 200);
+        return response()->json(['message' => 'You have successfully sent mail! We will reply to you in a short period!'], 200);
     }
 
 }

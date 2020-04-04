@@ -1,3 +1,3 @@
-Contact form submitted from: {{ $name }}, mail: {{$email_from}} <br>
+Contact form submitted from: {{ $name }}, email: {{$email}} <br>
 
 Message: {{$content}}

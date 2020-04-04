@@ -14,10 +14,11 @@ if (!function_exists('send_email')) {
      */
     function send_email($template, $email_data)
     {
+
         Mail::send($template, $email_data, function ($message) use ($email_data) {
-            $message->to($email_data['email'], $email_data['name'])
-                ->subject($email_data['subject'])
-                ->from('test@mail.com', 'LaravelServer');
+            $message->to('sasa96.sladic@gmail.com', 'Gazdi ide poruka')
+                ->subject(!is_null($email_data['subject']) ? $email_data['subject'] : 'Submitted contact form')
+                ->from($email_data['email'], $email_data['name']);
         });
     }
 }
