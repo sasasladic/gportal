@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Game;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\GameResource;
 use App\Http\Resources\Games;
 use App\Repositories\GameRepositoryInterface;
 use Illuminate\Http\JsonResponse;
@@ -36,76 +37,32 @@ class GameController extends Controller
      *     )
      *
      * Display a listing of all games.
-     * @return JsonResponse
      */
     public function index()
     {
-        return (new Games($this->game_repo->all()))->response()->setStatusCode(200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        //when we return collection (more then one data)
+        return GameResource::collection($this->game_repo->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @SWG\Get(
+     *      path="game/{game_id}",
+     *      summary="Get single game data",
+     *      description="Returns single game data",
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Success"
+     *       ),
+     *     )
+     * @param Game $game
+     * @return GameResource
      */
-    public function show($id)
+    public function show(Game $game)
     {
-        //
+        //when we return single object
+        return new GameResource($game);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -18,7 +18,6 @@
         "laravel/tinker": "^1.0",
         "laravel/ui": "^1.0",
         "laravolt/avatar": "^3.0",
-        "tymon/jwt-auth": "dev-develop",
         "zircote/swagger-php": "2.*"
     },
     "require-dev": {

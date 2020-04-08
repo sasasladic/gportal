@@ -19,7 +19,8 @@ class MachinesTableSeeder extends Seeder
             'root_username' => 'ssladic',
             'root_password' => 'neznam123',
             'location_id' => 1,
-            'price_per_slot' => 0.4
+            'price_per_slot' => 0.4,
+            'ping' => 30
         ]);
     }
 }

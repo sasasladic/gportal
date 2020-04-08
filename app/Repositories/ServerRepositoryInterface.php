@@ -15,7 +15,11 @@ interface ServerRepositoryInterface
 
     public function get($id): Server;
 
-    public function getUserServers($user_id): Collection;
+    public function getUserServers($userId): Collection;
+
+    public function findByGameId($gameId): Collection;
+
+    public function findByMachineAndGame($machineId, $gameId): Collection;
 
     public function update(Model $model, array $attributes): bool;
 

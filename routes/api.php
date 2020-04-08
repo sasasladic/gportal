@@ -13,9 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::prefix('v1')->group(function ()
 {
@@ -37,10 +34,22 @@ Route::prefix('v1')->group(function ()
     Route::get('email/verify/{id}/{hash}', 'API\Auth\VerificationController@verify')->name('verification.verify');
     Route::get('email/resend', 'API\Auth\VerificationController@resend')->name('verification.resend');
 
-
+    /*
+     * Game routes
+     */
     Route::get('/game/all', 'API\GameController@index');
+    Route::get('/game/{game}', 'API\GameController@show');
 
-    Route::get('/server/all', 'API\ServerController@getUserServers');
+
+    /*
+     * Server routes
+     */
+    //Dostupni serveri za tu igricu
+    Route::get('/server/all/{gameId}', 'API\ServerController@getGameAvailableServers');
+    Route::get('/machines/all', 'API\ServerController@getAllMachines');
+    Route::get('/server/{machineId}/{gameId}', 'API\ServerController@findByMachineAndGame');
+
+
     Route::get('/mod/all/{game_id}', 'API\ModController@findByGameId');
 
     Route::post('/contact', 'API\ContactFormController@contact');
@@ -50,9 +59,12 @@ Route::prefix('v1')->group(function ()
 Route::prefix('v1')->middleware('auth:api')->group(function ()
 {
 
-    Route::get('user', 'API\UserController@getAuthenticatedUser');
-
-    Route::post('/user/profile/update', 'API\UserController@updateProfile');
-
     Route::post('/order', 'API\OrderController@makeOrder');
+
+    /*
+     * User routes
+     */
+    Route::get('/user/profile', 'API\Auth\AuthController@getAuthenticatedUser');
+    Route::post('/user/profile/update', 'API\UserController@updateProfile');
+    Route::get('/user/servers/all', 'API\UserController@getUserServers');
 });

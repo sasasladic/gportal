@@ -44,7 +44,7 @@
                                         <option selected value="">Select location</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}"
-                                                    @if($location->id == $data->location_id) selected @endif>{{ $location->address }}</option>
+                                                    @if($location->id == $data->location_id) selected @endif>{{ $location->city }}, {{ $location->country }}</option>
                                         @endforeach
                                     </select>
                                 </div>

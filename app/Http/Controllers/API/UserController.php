@@ -5,16 +5,25 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserValidation;
+use App\Repositories\ServerRepositoryInterface;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
-
 
 class UserController extends Controller
 {
+
+    private $server_repo;
+
+    /**
+     * UserController constructor.
+     * @param $server_repo
+     */
+    public function __construct(ServerRepositoryInterface $server_repo)
+    {
+        $this->server_repo = $server_repo;
+    }
 
     /**
      * @SWG\Post(
@@ -47,24 +56,24 @@ class UserController extends Controller
      */
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-
-        try {
-            if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 400);
-            }
-        } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
-        }
-
-        $user = User::where('email', request(['email']))->first();
-        $user->image;
-
-        return response()->json([
-            'token' => $token,
-            'expiration' => time(),
-            'user' => $user
-        ]);
+//        $credentials = $request->only('email', 'password');
+//
+//        try {
+//            if (!$token = JWTAuth::attempt($credentials)) {
+//                return response()->json(['error' => 'invalid_credentials'], 400);
+//            }
+//        } catch (JWTException $e) {
+//            return response()->json(['error' => 'could_not_create_token'], 500);
+//        }
+//
+//        $user = User::where('email', request(['email']))->first();
+//        $user->image;
+//
+//        return response()->json([
+//            'token' => $token,
+//            'expiration' => time(),
+//            'user' => $user
+//        ]);
     }
 
     /**
@@ -143,18 +152,18 @@ class UserController extends Controller
      */
     public function register(UserValidation $request)
     {
-        $user = User::create([
-            'first_name' => $request->get('first_name'),
-            'last_name' => $request->get('last_name'),
-            'username' => $request->get('username'),
-            'email' => $request->get('email'),
-            'password' => bcrypt($request->get('password')),
-            'pin_code' => $request->get('pin_code'),
-            'country' => $request->get('country'),
-            'status' => 0,
-            'ip_address' => $request->ip(),
-            'role_id' => 3
-        ]);
+//        $user = User::create([
+//            'first_name' => $request->get('first_name'),
+//            'last_name' => $request->get('last_name'),
+//            'username' => $request->get('username'),
+//            'email' => $request->get('email'),
+//            'password' => bcrypt($request->get('password')),
+//            'pin_code' => $request->get('pin_code'),
+//            'country' => $request->get('country'),
+//            'status' => 0,
+//            'ip_address' => $request->ip(),
+//            'role_id' => 3
+//        ]);
 
 
 //        $data = array();
@@ -163,51 +172,13 @@ class UserController extends Controller
 //        $data['first_name'] = $user->first_name;
 //        $data['subject'] = 'Email confirmation';
 //        send_email('email.registration', $data);
-        $token = JWTAuth::fromUser($user);
-        $user->role;
-        return response()->json([
-            'token' => $token,
-            'expiration' => time(),
-            'user' => $user
-        ]);
-    }
-
-    /**
-     *
-     * @SWG\Get(
-     *      path="/user",
-     *      summary="Get authenticated user",
-     *      description="Returns authenticated user",
-     *      @SWG\Response(
-     *          response=200,
-     *          description="Success"
-     *       ),
-     *     )
-     * Get authenticated user.
-     * @return JsonResponse
-     */
-    public function getAuthenticatedUser()
-    {
-        try {
-            if (!$user = JWTAuth::parseToken()->authenticate()) {
-                return response()->json(['user_not_found'], 404);
-            }
-
-        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-
-            return response()->json(['token_expired'], $e->getStatusCode());
-
-        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-
-            return response()->json(['token_invalid'], $e->getStatusCode());
-
-        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-
-            return response()->json(['token_absent'], $e->getStatusCode());
-
-        }
-
-        return response()->json(compact('user'));
+//        $token = JWTAuth::fromUser($user);
+//        $user->role;
+//        return response()->json([
+//            'token' => $token,
+//            'expiration' => time(),
+//            'user' => $user
+//        ]);
     }
 
 
@@ -273,10 +244,27 @@ class UserController extends Controller
      */
     public function updateProfile(Request $request)
     {
-        $user = JWTAuth::parseToken()->authenticate();
+        $request->validate([
+            'first_name' => 'required|string|max:30',
+            'last_name' => 'required|string|max:30',
+            'username' => 'required|string|max:30',
+            'password' => 'sometimes|max:40',
+            'country' => 'required|string|max:32',
+            'pin_code' => 'sometimes|integer'
+        ]);
+        $user = auth()->user();
+
         $attributes = $request->except('image');
-        if (isset($attributes['password']) && $attributes['password'] != null) {
-            $attributes['password'] = Hash::make($attributes['password']);
+        if ($attributes['current_password'] != null && $attributes['new_password'] != null) {
+
+            if(Hash::check($attributes['current_password'], $user->password)){
+                $request->validate([
+                    'new_password' => 'required|min:5'
+                ]);
+                $user->password = Hash::make($attributes['new_password']);
+            }else{
+                return response(['errors' => ['current_password' => ['Invalid password']]], 422);
+            }
         }
         if ($request->hasFile('image')) {
             $alt = $attributes['first_name'] . ' ' . $attributes['last_name'];
@@ -286,7 +274,33 @@ class UserController extends Controller
             }
         }
         $user->update($attributes);
-        return response()->json('Success', 200);
+        return response()->json(['message' => 'Successfully', 'user' => $user], 200);
 
+    }
+
+    /**
+     * @SWG\Get(
+     *      path="user/servers/all",
+     *      summary="Get list of all user servers",
+     *      description="Returns list of all servers",
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Success"
+     *       ),
+     *     )
+     *
+     * Display a listing of all servers.
+     * @return JsonResponse
+     */
+    public function getUserServers()
+    {
+        $user = auth()->user();
+        $servers = $this->server_repo->getUserServers($user->id);
+        foreach ($servers as $server) {
+            $server->machine;
+            $server->mod;
+            $server->game;
+        }
+        return response()->json(['servers' => $servers]);
     }
 }

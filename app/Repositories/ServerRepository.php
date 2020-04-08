@@ -28,9 +28,14 @@ class ServerRepository implements ServerRepositoryInterface
         return Server::find($id);
     }
 
-    public function getUserServers($user_id): Collection
+    public function getUserServers($userId): Collection
     {
-        return Server::where('user_id', $user_id)->get();
+        return Server::where('user_id', $userId)->get();
+    }
+
+    public function findByGameId($id): Collection
+    {
+        return Server::where('game_id', $id)->get();
     }
 
     public function update(Model $model, array $attributes): bool
@@ -45,5 +50,10 @@ class ServerRepository implements ServerRepositoryInterface
         } catch (\Exception $exception) {
             return false;
         }
+    }
+
+    public function findByMachineAndGame($machineId, $gameId): Collection
+    {
+        return Server::where('machine_id', $machineId)->where('game_id', $gameId)->get();
     }
 }

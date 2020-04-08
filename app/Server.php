@@ -15,6 +15,7 @@ class Server extends Model
         'username',
         'password',
         'slots',
+        'price_per_slot',
         'status',
         'expire_on',
         'machine_id',

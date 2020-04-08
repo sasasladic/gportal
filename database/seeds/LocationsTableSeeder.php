@@ -13,7 +13,12 @@ class LocationsTableSeeder extends Seeder
     public function run()
     {
         Location::create([
-            'address' => 'München Germany',
+            'city' => 'München',
+            'country' => 'Germany',
+        ]);
+        Location::create([
+            'city' => 'Belgrade',
+            'country' => 'Serbia',
         ]);
     }
 }

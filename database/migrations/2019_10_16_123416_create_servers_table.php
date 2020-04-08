@@ -17,6 +17,7 @@ class CreateServersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('slots');
+            $table->double('price_per_slot');
             $table->integer('port')->nullable();
             $table->string('status');
             $table->string('username')->nullable();

@@ -17,7 +17,8 @@ class Machine extends Model
         'root_username',
         'root_password',
         'location_id',
-        'price_per_slot'
+        'price_per_slot',
+        'ping'
     ];
 
     public function location()

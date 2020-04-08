@@ -13,7 +13,6 @@ use App\Repositories\UserRepositoryInterface;
 use App\Server;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use JWTAuth;
 
 class OrderController extends Controller
 {
@@ -96,7 +95,10 @@ class OrderController extends Controller
      */
     public function makeOrder(Request $request)
     {
-        $user = JWTAuth::parseToken()->authenticate();
+        $user = auth()->user();
+
+
+
         $game = $this->game_repo->get($request->get('gameId'));
         $server = new Server();
         $server->name = $request->get('serverName');

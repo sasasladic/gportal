@@ -24,7 +24,7 @@
                 <td>{{ $single->ip_address }}</td>
                 <td>{{ $single->ssh_port  }}</td>
                 <td>{{ $single->root_username }}</td>
-                <td>{{ $single->location->address }}</td>
+                <td>{{ $single->location->city }}, {{ $single->location->country }}</td>
                 <td>{{ date("d.m.Y H:i", strtotime($single->created_at)) }}</td>
                 <td>
                     <a href="edit/{{ $single->id}}"><i class="material-icons">edit</i></a>

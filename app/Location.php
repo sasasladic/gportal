@@ -12,7 +12,8 @@ class Location extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'address'
+        'city',
+        'country'
     ];
 
     public function machines()

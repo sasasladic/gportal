@@ -79,4 +79,16 @@ class AuthController extends Controller
 //            )->toDateTimeString()
         ]);
     }
+    /**
+     * Returns Authenticated User Details
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getAuthenticatedUser()
+    {
+        $user = auth()->user();
+        $user->image;
+        return response()->json(['user' => auth()->user()], 200);
+    }
+
 }
