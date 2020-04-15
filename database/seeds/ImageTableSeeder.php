@@ -21,7 +21,7 @@ class ImageTableSeeder extends Seeder
             'alt' => 'payment-slip'
         ]);
         Image::create([
-            'path' => '/storage/image/cs.png',
+            'path' => '/storage/image/cs.jpg',
             'alt' => 'cs1.6'
         ]);
     }
