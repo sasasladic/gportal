@@ -16,7 +16,7 @@ class OrdersTableSeeder extends Seeder
             'order_no' => 1,
             'user_id' => 1,
             'server_id' => 1,
-            'order_status_id' => 1,
+            'order_status_id' => 2,
             'image_id' => 2,
             'price' => 100
         ]);
