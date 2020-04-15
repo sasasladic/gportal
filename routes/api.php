@@ -59,7 +59,11 @@ Route::prefix('v1')->group(function ()
 Route::prefix('v1')->middleware('auth:api')->group(function ()
 {
 
+    Route::get('/order/all', 'API\OrderController@allOrders');
     Route::post('/order', 'API\OrderController@makeOrder');
+
+    Route::get('/ticket/all', 'API\TicketController@userTickets');
+    Route::post('/ticket/create', 'API\TicketController@create');
 
     /*
      * User routes

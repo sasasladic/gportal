@@ -40,4 +40,9 @@ class OrderRepository implements OrderRepositoryInterface
             return false;
         }
     }
+
+    public function findByUser(int $userId): Collection
+    {
+        return Order::where('user_id', $userId)->get();
+    }
 }

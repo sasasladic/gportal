@@ -27,10 +27,7 @@ class ServerController extends Controller
 
     public function getGameAvailableServers(Request $request, int $gameId)
     {
-        //for one single
         return ServerResource::collection($this->server_repo->findByGameId($gameId));
-        //for collection
-//      return SongResource::collection(Song::all());
     }
 
     public function getAllMachines(){

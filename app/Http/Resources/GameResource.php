@@ -11,6 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed short_name
  * @property mixed image
  * @property mixed slot_per_month
+ * @property mixed description
  */
 class GameResource extends JsonResource
 {
@@ -27,7 +28,8 @@ class GameResource extends JsonResource
             'name' => $this->name,
             'short_name' => $this->short_name,
             'image' => $this->image->path,
-            'slot_per_month' => $this->slot_per_month
+            'slot_per_month' => $this->slot_per_month,
+            'description' => $this->description
         ];
     }
 }

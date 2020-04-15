@@ -19,7 +19,7 @@ class CreateServersTable extends Migration
             $table->integer('slots');
             $table->double('price_per_slot');
             $table->integer('port')->nullable();
-            $table->string('status');
+            $table->boolean('status');
             $table->string('username')->nullable();
             $table->string('password')->nullable();
             $table->timestamp('expire_on')->nullable();

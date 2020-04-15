@@ -73,6 +73,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row clearfix">
+                        <div class="col-md-6">
+                            <b>Description</b>
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <textarea name="description"
+                                              class="form-control"
+                                              style="height: 250px;">{{ $data->description }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary m-t-15 waves-effect">Save</button>
                 </form>
             </div>

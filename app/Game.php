@@ -16,7 +16,16 @@ class Game extends Model
         'name',
         'short_name',
         'image_id',
-        'slot_per_month'
+        'slot_per_month',
+        'description'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
     ];
 
     public function mods()

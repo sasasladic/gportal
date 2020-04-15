@@ -5,10 +5,13 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserValidation;
+use App\Http\Resources\ServerCollection;
+use App\Http\Resources\ServerResource;
 use App\Repositories\ServerRepositoryInterface;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -290,17 +293,12 @@ class UserController extends Controller
      *     )
      *
      * Display a listing of all servers.
-     * @return JsonResponse
+     * @return AnonymousResourceCollection
      */
     public function getUserServers()
     {
         $user = auth()->user();
-        $servers = $this->server_repo->getUserServers($user->id);
-        foreach ($servers as $server) {
-            $server->machine;
-            $server->mod;
-            $server->game;
-        }
-        return response()->json(['servers' => $servers]);
+        ServerResource::withoutWrapping();
+        return ServerResource::collection($this->server_repo->getUserServers($user->id));
     }
 }

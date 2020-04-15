@@ -19,7 +19,7 @@ class ServersTableSeeder extends Seeder
             'password' => 'test',
             'slots' => 12,
             'price_per_slot' => 0.41,
-            'status' => 'Deaktiviran',
+            'status' => 2,
             'expire_on' => date("Y-m-d H:i:s"),
             'machine_id' => 1,
             'mod_id' => 1,

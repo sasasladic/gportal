@@ -23,7 +23,8 @@ class MachineResource extends JsonResource
         return [
             'id' => $this->id,
             'ping' => $this->ping,
-            'location' => new LocationResource($this->location)
+            'location' => new LocationResource($this->location),
+            'ip_address' => $this->ip_address
         ];
     }
 }

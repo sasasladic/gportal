@@ -21,8 +21,7 @@ class ServerCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => $this->collection,
-            'count' => $this->collection->count()
+            'servers' => $this->collection
         ];
     }
 }

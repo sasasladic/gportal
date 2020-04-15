@@ -19,6 +19,7 @@ class CreateGamesTable extends Migration
             $table->string('short_name');
             $table->unsignedInteger('image_id')->nullable();
             $table->double('slot_per_month');
+            $table->text('description');
 
         });
 

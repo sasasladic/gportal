@@ -20,4 +20,6 @@ interface OrderRepositoryInterface
 
     public function delete(Model $model): bool;
 
+    public function findByUser(int $userId): Collection;
+
 }
