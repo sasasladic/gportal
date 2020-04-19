@@ -57,7 +57,7 @@ class GameResource extends JsonResource
             $output[$i]['id'] = $location->id;
             $output[$i]['city'] = $location->city;
             $output[$i]['country'] = $location->country;
-            $output[$i]['price'] = $location->pivot->price;
+            $output[$i]['price'] = (double) $location->pivot->price;
             $i++;
         }
 
