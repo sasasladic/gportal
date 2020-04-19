@@ -16,7 +16,11 @@ class Game extends Model
         'name',
         'short_name',
         'image_id',
-        'slot_per_month',
+        'min_slots',
+        'max_slots',
+        'min_gigabytes',
+        'max_gigabytes',
+        'increase_by',
         'description'
     ];
 
@@ -46,4 +50,15 @@ class Game extends Model
     {
         return $this->hasMany(Server::class);
     }
+
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class)->withPivot('price');
+    }
+
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
+
 }

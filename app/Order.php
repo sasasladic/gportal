@@ -12,15 +12,32 @@ class Order extends Model
     protected $fillable = [
         'order_no',
         'user_id',
-        'server_id',
+        'game_id',
+        'location_id',
+        'mod_id',
+        'slots',
+        'gigabytes',
         'order_status_id',
         'image_id',
+        'payment_method',
+        'price_without_discount',
+        'discount',
         'price',
     ];
 
-    public function server()
+    public function game()
     {
-        return $this->belongsTo(Server::class);
+        return $this->belongsTo(Game::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    public function mod()
+    {
+        return $this->belongsTo(Mod::class);
     }
 
     public function order_status()

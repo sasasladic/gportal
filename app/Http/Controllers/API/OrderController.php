@@ -1,19 +1,19 @@
 <?php
 
-
 namespace App\Http\Controllers\API;
-
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OrderResource;
+use App\Image;
+use App\Mail\OrderMail;
 use App\Order;
 use App\Repositories\GameRepositoryInterface;
 use App\Repositories\OrderRepositoryInterface;
-use App\Repositories\ServerRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
-use App\Server;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+
 
 class OrderController extends Controller
 {
@@ -98,34 +98,35 @@ class OrderController extends Controller
     {
         $user = auth()->user();
 
+        if($request->get('image')) {
+            $image = $request->get('image');
 
+            $imagePath = date('Y') . '/' . date('m') . '/' . date('d');
+            $imageType = substr($image['info']['name'], strrpos($image['info']['name'], '.'));
+            $imageName = $user->first_name . $user->last_name . $imageType;
 
-        $game = $this->game_repo->get($request->get('gameId'));
-        $server = new Server();
-        $server->name = $request->get('serverName');
-        $server->slots = $request->get('slots');
-        $server->status = 'Deaktiviran';
-        $server->machine_id = $request->get('machineId');
-        $server->game_id = $game->id;
-        $server->user_id = $user->id;
-        $server->mod_id = $request->get('modId');
-        $server->expire_on = date('y-m-d', strtotime("+" . $request->get('months') . "month", time()));
-        $server->save();
+            $data = substr($image['dataUrl'], strpos($image['dataUrl'], ',') + 1);
+            Storage::disk('local')->put("public/payment-slips/$imagePath/$imageName" , base64_decode($data));
 
-        $order = new Order();
-        $order->order_no = time();
-        $order->order_status_id = 2;
-        $order->user_id = $user->id;
-        $order->server_id = $server->id;
-        $order->price = $server->machine->price_per_slot * $server->slots;
+            $imageObject = new Image();
+            $imageObject->path = "/storage/payment-slips/$imagePath/$imageName";
+            $imageObject->save();
+        }
+
+        $attrs = $request->except('image');
+        $attrs['order_no'] = time();
+        $attrs['user_id'] = $user->id;
+        $attrs['order_status_id'] = 2;
+        if(isset($imageObject)) {
+            $attrs['image_id'] = $imageObject->id;
+        }
+
+        $order = new Order($attrs);
         $order->save();
 
-        $order->server;
-        $order->user;
-        $order->server;
-        $order->order_status;
+        Mail::to('sasa96.sladic@gmail.com')->send(new OrderMail());
 
-        return $order;
+        return response(['message' => 'You have successfully ordered the server!']);
     }
 
     public function allOrders ()

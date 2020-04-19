@@ -20,4 +20,15 @@ class Location extends Model
     {
         return $this->hasMany(Machine::class);
     }
+
+    public function games()
+    {
+        return $this->belongsToMany(Game::class)->withPivot('price');
+    }
+
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
+
 }

@@ -5,10 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Game;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GameResource;
-use App\Http\Resources\Games;
 use App\Repositories\GameRepositoryInterface;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
@@ -40,7 +37,7 @@ class GameController extends Controller
      */
     public function index()
     {
-        //when we return collection (more then one data)
+        //when we return collection resource
         return GameResource::collection($this->game_repo->all());
     }
 
@@ -61,7 +58,7 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        //when we return single object
+        //when we return single object resource
         return new GameResource($game);
     }
 

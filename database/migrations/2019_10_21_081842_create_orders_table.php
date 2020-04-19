@@ -16,17 +16,26 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_no');
-            $table->double('price');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('server_id');
+            $table->unsignedInteger('game_id');
+            $table->unsignedInteger('location_id');
+            $table->unsignedInteger('mod_id')->nullable();
+            $table->integer('slots')->nullable();
+            $table->integer('gigabytes')->nullable();
             $table->unsignedInteger('order_status_id');
             $table->unsignedInteger('image_id')->nullable();
+            $table->string('payment_method');
+            $table->double('price_without_discount');
+            $table->double('discount');
+            $table->double('price');
             $table->timestamps();
         });
 
         Schema::table('orders', function ($table) {
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('server_id')->references('id')->on('servers');
+            $table->foreign('game_id')->references('id')->on('games');
+            $table->foreign('mod_id')->references('id')->on('mods');
+            $table->foreign('location_id')->references('id')->on('locations');
             $table->foreign('order_status_id')->references('id')->on('order_statuses');
             $table->foreign('image_id')->references('id')->on('images');
         });

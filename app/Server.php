@@ -41,7 +41,7 @@ class Server extends Model
 
     public function order()
     {
-        return $this->hasOne(Game::class);
+        return $this->hasOne(Order::class);
     }
 
     public function game()

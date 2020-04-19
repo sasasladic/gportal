@@ -26,4 +26,9 @@ class Mod extends Model
     {
         return $this->hasMany(Server::class);
     }
+
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Game;
 use App\Http\Controllers\Controller;
+use App\Location;
 use App\Repositories\GameRepositoryInterface;
+use App\Repositories\LocationRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -12,14 +14,19 @@ class GameController extends Controller
 {
     protected $games;
 
+    protected $locations;
+
     /**
      * GameController constructor.
      * @param GameRepositoryInterface $games
+     * @param LocationRepositoryInterface $locations
      */
     public function __construct(
-        GameRepositoryInterface $games
+        GameRepositoryInterface $games,
+        LocationRepositoryInterface $locations
     ) {
         $this->games = $games;
+        $this->locations = $locations;
     }
 
     /**
@@ -39,7 +46,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('admin.game.create');
+        return view('admin.game.create',['locations'=> $this->locations->all()]);
     }
 
     /**
@@ -50,7 +57,12 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        $attributes = $request->except('image');
+        $attributes = $request->only(
+            'name', 'short_name', 'description',
+            'min_slots', 'max_slots', 'min_gigabytes',
+            'max_gigabytes', 'increase_by'
+        );
+
         if ($request->hasFile('image')) {
             $alt = $attributes['name'];
             $image = saveImage($request->file('image'), $alt);
@@ -58,8 +70,17 @@ class GameController extends Controller
                 $attributes['image_id'] = $image->id;
             }
         }
-        return ($this->games->store($attributes)) ? redirect()->route('game.index') : redirect()->back()->with('error',
-            'Something went wrong, please try again.')->withInput($request->all());
+
+        $game = new Game($attributes);
+        $game->save();
+
+        foreach ($this->locations->all() as $location) {
+            if($request->get($location->city)) {
+                $game->locations()->attach($location->id, ['price' => $request->get("price-$location->city")]);
+            }
+        }
+
+        return redirect()->route('game.index');
     }
 
     /**
