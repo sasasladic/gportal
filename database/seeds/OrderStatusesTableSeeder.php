@@ -13,13 +13,13 @@ class OrderStatusesTableSeeder extends Seeder
     public function run()
     {
         OrderStatus::create([
-            'name' => 'Active'
+            'name' => 'Approved'
         ]);
         OrderStatus::create([
-            'name' => 'Inactive'
+            'name' => 'Rejected'
         ]);
         OrderStatus::create([
-            'name' => 'Suspended'
+            'name' => 'Waiting to approve'
         ]);
     }
 }
