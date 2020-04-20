@@ -10,8 +10,11 @@
             <th>Order no</th>
             <th>Client</th>
             <th>Username</th>
-            <th>Server</th>
-            <th>Status</th>
+            <th>Game</th>
+            <th>Location</th>
+            <th>Payment method</th>
+{{--            <th>Status</th>--}}
+            <th>Price</th>
             <th>Created at</th>
             <th style="width: 90px;">Actions</th>
         </tr>
@@ -21,21 +24,24 @@
             <tr>
                 <td>{{ $single->id }}</td>
                 <td>{{ $single->order_no }}</td>
-                <td>{{ $single->user->first_name . " " . $single->user->last_name}}</td>
-                <td>{{ $single->user->username}}</td>
-                <td>{{ $single->server->name }}</td>
-                <td>
-                    <form id="status_form" class="status_form" action="" method="post">
-                        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                        <select class="changeStatus" name="changeStatus">
-                            @foreach($all_statuses as $status)
-                                <option class="{{ $single->id }}" value="{{$status->id}}"
-                                        @if($single->order_status_id == $status->id) selected @endif>{{$status->name}}</option>
-                            @endforeach
-                        </select>
-                        <input class="projectId" type="hidden" name="projectId" value=""/>
-                    </form>
-                </td>
+                <td>{{ $single->user->first_name . " " . $single->user->last_name }}</td>
+                <td>{{ $single->user->username }}</td>
+                <td>{{ $single->game->name }}</td>
+                <td>{{ $single->location->city, $single->location->country }}</td>
+                <td>{{ $single->payment_method }}</td>
+{{--                <td>--}}
+{{--                    <form id="status_form" class="status_form" action="" method="post">--}}
+{{--                        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">--}}
+{{--                        <select class="changeStatus" name="changeStatus">--}}
+{{--                            @foreach($all_statuses as $status)--}}
+{{--                                <option class="{{ $single->id }}" value="{{$status->id}}"--}}
+{{--                                        @if($single->order_status_id == $status->id) selected @endif>{{$status->name}}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                        <input class="projectId" type="hidden" name="projectId" value=""/>--}}
+{{--                    </form>--}}
+{{--                </td>--}}
+                <td>{{ $single->price }}€</td>
                 {{--                <td>{{ $single->order_status->name }}</td>--}}
                 <td>{{ date("d.m.Y H:i", strtotime($single->created_at)) }}</td>
                 <td>

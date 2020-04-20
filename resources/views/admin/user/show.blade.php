@@ -141,15 +141,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($servers as $server)
-                                <tr>
-                                    <td>{{ $server->name }}</td>
-                                    <td>{{ $server->mod->game->name }}</td>
-                                    <td>{{ $server->mod->name }}</td>
-                                    <td>{{ $server->slots }}</td>
-                                    <td>{{ date("d.m.Y", strtotime($server->expire_on)) }}</td>
-                                </tr>
-                            @endforeach
+{{--                            @foreach($servers as $server)--}}
+{{--                                <tr>--}}
+{{--                                    <td>{{ $server->name }}</td>--}}
+{{--                                    <td>{{ $server->mod->game->name }}</td>--}}
+{{--                                    <td>{{ $server->mod->name }}</td>--}}
+{{--                                    <td>{{ $server->slots }}</td>--}}
+{{--                                    <td>{{ date("d.m.Y", strtotime($server->expire_on)) }}</td>--}}
+{{--                                </tr>--}}
+{{--                            @endforeach--}}
                             </tbody>
                         </table>
 
@@ -167,18 +167,15 @@
                             <tbody>
                             @foreach($orders as $order)
                                 <tr>
-                                    <td>{{ $order->server->name }}</td>
+{{--                                    <td>{{ $order->server->name }}</td>--}}
                                     <td>{{ $order->order_status->name }}</td>
                                     <td>{{ date("d.m.Y", strtotime($order->created_at)) }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
-
                     </div>
                 </div>
-
-
             </div>
 
         </div>

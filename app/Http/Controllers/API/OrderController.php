@@ -116,7 +116,7 @@ class OrderController extends Controller
         $attrs = $request->except('image');
         $attrs['order_no'] = time();
         $attrs['user_id'] = $user->id;
-        $attrs['order_status_id'] = 2;
+        $attrs['order_status_id'] = 3;
         if(isset($imageObject)) {
             $attrs['image_id'] = $imageObject->id;
         }

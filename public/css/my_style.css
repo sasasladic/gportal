@@ -11,4 +11,7 @@ table td {
 .bootstrap-select.btn-group .dropdown-menu.inner{
     margin-left: 25px !important;
 }
+.tab-content .row {
+    margin-bottom: 10px;
+}
 
